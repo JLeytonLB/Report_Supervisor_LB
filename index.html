@@ -366,9 +366,10 @@
         { cod: "1", nombre: "DETENCIÓN POR CLIMA" }, { cod: "2", nombre: "ESPERANDO INSUMOS" }, { cod: "3", nombre: "ESPERANDO AGUA" }, { cod: "4", nombre: "ESPERANDO INSTRUCCIÓN DEL CLIENTE" }, { cod: "5", nombre: "ESPERA INSTRUCCIÓN FORACO" }, { cod: "6", nombre: "ESPERANDO DISPOSITIVO DE MEDICIÓN" }, { cod: "7", nombre: "ESPERANDO PLATAFORMA" }, { cod: "8", nombre: "ESPERANDO PERSONAL" }, { cod: "9", nombre: "ESPERANDO GENERADOR" }, { cod: "10", nombre: "ESPERANDO TRASLADO PERSONAL" }, { cod: "11", nombre: "FRAGÜE DE CEMENTO" }, { cod: "12", nombre: "PROBLEMA EN RECUPERACIÓN DE BARRA" }, { cod: "13", nombre: "CAMBIO / ROTURA CABLES DE WINCHES" }, { cod: "14", nombre: "PROBLEMA EN UN EQUIPO DE APOYO" }, { cod: "15", nombre: "MOVIMIENTO DE HERRAMIENTA" }, { cod: "16", nombre: "REPERFORACIÓN - REAMING" }, { cod: "17", nombre: "PERFORANDO" }, { cod: "18", nombre: "RESCATE HERRAMIENTA" }, { cod: "19", nombre: "INSPECCIÓN / ORGANIZACIÓN / REUNIÓN HSE" }, { cod: "20", nombre: "INSTALANDO CUÑA / DESVIANDO POZO" }, { cod: "21", nombre: "MEDICIÓN DE POZO" }, { cod: "22", nombre: "DESARME - TRASLADO - INSTALACIÓN DE EQUIPO" }, { cod: "23", nombre: "PREPARACIÓN DE LODO" }, { cod: "24", nombre: "ENSANCHE DE POZO" }, { cod: "25", nombre: "CAMBIO DE DIÁMETRO - REDUCCIÓN DE POZO" }, { cod: "26", nombre: "COLACIÓN" }, { cod: "27", nombre: "INSTALANDO - RESCATANDO CASING" }, { cod: "28", nombre: "DETENCIÓN PROGRAMADA" }, { cod: "29", nombre: "TIEMPO DE TRASLADO COLACIÓN" }, { cod: "30", nombre: "ACONDICIONANDO - ESTABILIZANDO POZO" }, { cod: "31", nombre: "CONTROLANDO PÉRDIDA DE CIRCULACIÓN" }, { cod: "32", nombre: "PERFORANDO MATRIZ - FIERRO EN EL POZO" }, { cod: "33", nombre: "TRONADURA" }, { cod: "34", nombre: "LIMPIEZA Y ORDENANDO PLATAFORMA" }, { cod: "35", nombre: "ESPERANDO MECÁNICO" }, { cod: "36", nombre: "ESPERANDO REPUESTOS" }, { cod: "37", nombre: "FALLA ALTERNADOR, MOTOR DE ARRANQUE O BATERÍA" }, { cod: "38", nombre: "FALLA CIRCUITO ELÉCTRICO" }, { cod: "40", nombre: "DEFECTO EN LAS BOMBAS HIDRÁULICAS" }, { cod: "41", nombre: "FALLA SISTEMA DE LODO" }, { cod: "42", nombre: "FALLA EN PRENSA DE PIE O ROD SPINNER" }, { cod: "43", nombre: "PROBLEMA EN EL CAMIÓ PORTASONDA" }, { cod: "44", nombre: "DEFECTO EN UN CILINDRO HIDRÁULICO" }, { cod: "45", nombre: "OTRA FALLA HIDRÁULICA" }, { cod: "46", nombre: "FALLA EMBRAGUE, ACOPLE, CAJA FUNK O TRANSMISIÓN" }, { cod: "47", nombre: "FALLA EN WINCHES O POLEAS" }, { cod: "48", nombre: "FALLA EN LA MESA O EL CHUCK" }, { cod: "51", nombre: "FALLA MECÁNICA DEL MOTOR" }, { cod: "53", nombre: "CAMBIO GUÍAS O MORDAZAS" }, { cod: "54", nombre: "FALLA EN TORRE" }, { cod: "55", nombre: "TRABAJOS DE SOLDADURA EN LA SONDA" }, { cod: "56", nombre: "MANTENCIÓN INICIAL (CHEQUEO NIVELES, ENGRASE, ETC.)" }, { cod: "57", nombre: "MANTENCIÓN PROGRAMADA" }, { cod: "59", nombre: "FALLA MECÁNICA BOMBA DE LODO O MOTOBOMBA" }, { cod: "60", nombre: "DEFECTO EN MANGUERAS (FUGA / ROTURA / CAMBIO)" }
     ];
 
-    const mapaSondas = {
-        "EDM-5650": "EDM-2000", "EDM-5649": "EDM-2000", "EDM95K-108": "EDM-95", "EDM95K-109": "EDM-95", "SCHRAMM-107": "SCHRAMM T685W", "SCHRAMM-106": "SCHRAMM T685W", "EDM-MP-104": "EDM-2000-MP", "LF-90": "UDR", "VD8000-22": "AVD VD8000", "VD8000-21": "AVD VD8000", "LF-90-56": "UDR"
-    };
+    let mapaSondas = {
+    "EDM-5650": {"modelo": "EDM-2000", "metodo": "DDH"},
+    "SCHRAMM-106": {"modelo": "SCHRAMM T685W", "metodo": "RC"}
+};
 
     const datosPozos = {
         "END-004": { azimut: 145, inclinacion: -80, recom: "CO_GEOM26_EN_REC_004", largoProgramado: 500 },
@@ -1102,6 +1103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             datosCargados = data;
+            
+            if (data.sondas) {mapaSondas = { ...mapaSondas, ...data.sondas};}
 
             // 1. Llenar desplegable de Sondas
             const selectSonda = document.getElementById('sonda');
