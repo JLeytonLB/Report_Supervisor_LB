@@ -1,16 +1,49 @@
 {
     "sondas": {
-        "EDM-5650": "EDM-2000",
-        "EDM-5649": "EDM-2000",
-        "EDM95K-108": "EDM-95",
-        "EDM95K-109": "EDM-95",
-        "SCHRAMM-107": "SCHRAMM T685W",
-        "SCHRAMM-106": "SCHRAMM T685W",
-        "EDM-MP-104": "EDM-2000-MP",
-        "LF-90": "UDR",
-        "VD8000-22": "AVD VD8000",
-        "VD8000-21": "AVD VD8000",
-        "LF-90-56": "UDR"
+        "EDM-5650": {
+            "modelo": "EDM-2000",
+            "metodo": "DDH"
+        },
+        "EDM-5649": {
+            "modelo": "EDM-2000",
+            "metodo": "DDH"
+        },
+        "EDM95K-108": {
+            "modelo": "EDM-95",
+            "metodo": "DDH"
+        },
+        "EDM95K-109": {
+            "modelo": "EDM-95",
+            "metodo": "DDH"
+        },
+        "SCHRAMM-107": {
+            "modelo": "SCHRAMM T685W",
+            "metodo": "RC"
+        },
+        "SCHRAMM-106": {
+            "modelo": "SCHRAMM T685W",
+            "metodo": "RC"
+        },
+        "EDM-MP-104": {
+            "modelo": "EDM-2000-MP",
+            "metodo": "DDH"
+        },
+        "LF-90": {
+            "modelo": "UDR",
+            "metodo": "DDH"
+        },
+        "VD8000-22": {
+            "modelo": "AVD VD8000",
+            "metodo": "RC"
+        },
+        "VD8000-21": {
+            "modelo": "AVD VD8000",
+            "metodo": "RC"
+        },
+        "LF-90-56": {
+            "modelo": "UDR",
+            "metodo": "DDH"
+        }
     },
     "pozos": {
         "ENR-012": {
