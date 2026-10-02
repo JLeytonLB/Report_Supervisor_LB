@@ -1089,6 +1089,75 @@ function cargarBorradorSilencioso() {
         console.error("Error al cargar automáticamente:", e);
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    let datosCargados = {};
+
+    // Cargar pozos.json con timestamp para evitar caché
+    fetch('pozos.json?v=' + new Date().getTime())
+        .then(response => {
+            if (!response.ok) throw new Error('No se pudo abrir pozos.json');
+            return response.json();
+        })
+        .then(data => {
+            datosCargados = data;
+
+            // 1. Llenar desplegable de Sondas
+            const selectSonda = document.getElementById('sonda');
+            if (selectSonda && data.sondas) {
+                selectSonda.innerHTML = '<option value="">Seleccionar Sonda...</option>';
+                Object.keys(data.sondas).forEach(sonda => {
+                    const opt = document.createElement('option');
+                    opt.value = sonda;
+                    opt.textContent = sonda;
+                    selectSonda.appendChild(opt);
+                });
+            }
+
+            // 2. Llenar desplegable de Pozos
+            const selectPozo = document.getElementById('pozo'); // Verifica el id de tu campo de pozos
+            if (selectPozo && data.pozos) {
+                selectPozo.innerHTML = '<option value="">Seleccionar Pozo...</option>';
+                Object.keys(data.pozos).forEach(pozo => {
+                    const opt = document.createElement('option');
+                    opt.value = pozo;
+                    opt.textContent = pozo;
+                    selectPozo.appendChild(opt);
+                });
+            }
+        })
+        .catch(err => console.error('Error al cargar datos del JSON:', err));
+
+    // Auto-completar Modelo de Equipo al cambiar la Sonda
+    const selectSonda = document.getElementById('sonda');
+    if (selectSonda) {
+        selectSonda.addEventListener('change', (e) => {
+            const sondaSel = e.target.value;
+            const inputModelo = document.getElementById('modeloEquipo'); // Ajusta según tu HTML
+            if (inputModelo && datosCargados.sondas && datosCargados.sondas[sondaSel]) {
+                inputModelo.value = datosCargados.sondas[sondaSel];
+            }
+        });
+    }
+
+    // Auto-completar Azimut, Inclinación, Recomendación y Largo al seleccionar un Pozo
+    const selectPozo = document.getElementById('pozo');
+    if (selectPozo) {
+        selectPozo.addEventListener('change', (e) => {
+            const pozoSel = e.target.value;
+            if (datosCargados.pozos && datosCargados.pozos[pozoSel]) {
+                const info = datosCargados.pozos[pozoSel];
+                
+                // Asigna los datos a cada campo de formulario si existen en el HTML
+                if (document.getElementById('azimut')) document.getElementById('azimut').value = info.azimut;
+                if (document.getElementById('inclinacion')) document.getElementById('inclinacion').value = info.inclinacion;
+                if (document.getElementById('recomendacion')) document.getElementById('recomendacion').value = info.recom;
+                if (document.getElementById('largoProgramado')) document.getElementById('largoProgramado').value = info.largoProgramado;
+            }
+        });
+    }
+});
+                                             
                                              
 <!-- Registro del Service Worker para PWA / Offline -->
   if ('serviceWorker' in navigator) {
