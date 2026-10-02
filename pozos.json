@@ -1,0 +1,71 @@
+{
+    "sondas": {
+        "EDM-5650": "EDM-2000",
+        "EDM-5649": "EDM-2000",
+        "EDM95K-108": "EDM-95",
+        "EDM95K-109": "EDM-95",
+        "SCHRAMM-107": "SCHRAMM T685W",
+        "SCHRAMM-106": "SCHRAMM T685W",
+        "EDM-MP-104": "EDM-2000-MP",
+        "LF-90": "UDR",
+        "VD8000-22": "AVD VD8000",
+        "VD8000-21": "AVD VD8000",
+        "LF-90-56": "UDR"
+    },
+    "pozos": {
+        "END-004": {
+            "azimut": 145,
+            "inclinacion": -80,
+            "recom": "CO_GEOM26_EN_REC_004",
+            "largoProgramado": 500
+        },
+        "END-005": {
+            "azimut": 240,
+            "inclinacion": -80,
+            "recom": "CO_GEOM26_EN_REC_005",
+            "largoProgramado": 500
+        },
+        "ENR-009": {
+            "azimut": 100,
+            "inclinacion": -80,
+            "recom": "CO_ESP26_N_REC_009",
+            "largoProgramado": 500
+        },
+        "ENR-010": {
+            "azimut": 145,
+            "inclinacion": -85,
+            "recom": "CO_ESP26_N_REC_008",
+            "largoProgramado": 500
+        },
+        "ENR-011": {
+            "azimut": 145,
+            "inclinacion": -85,
+            "recom": "CO_ESP26_N_REC_012",
+            "largoProgramado": 500
+        },
+        "ENR-012": {
+            "azimut": 145,
+            "inclinacion": -85,
+            "recom": "CO_ESP26_N_REC_010",
+            "largoProgramado": 500
+        },
+        "LR-1594": {
+            "azimut": 170,
+            "inclinacion": -70,
+            "recom": "LB1_IN26_REC_022",
+            "largoProgramado": 500
+        },
+        "LR-1597": {
+            "azimut": 170,
+            "inclinacion": -60,
+            "recom": "LB1_IN26_REC_015",
+            "largoProgramado": 500
+        },
+        "LR-1599": {
+            "azimut": 65,
+            "inclinacion": -80,
+            "recom": "CO_SULF26_VN_REC_010",
+            "largoProgramado": 500
+        }
+    }
+}
