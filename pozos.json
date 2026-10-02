@@ -13,59 +13,53 @@
         "LF-90-56": "UDR"
     },
     "pozos": {
-        "END-004": {
-            "azimut": 145,
-            "inclinacion": -80,
-            "recom": "CO_GEOM26_EN_REC_004",
-            "largoProgramado": 500
-        },
-        "END-005": {
-            "azimut": 240,
-            "inclinacion": -80,
-            "recom": "CO_GEOM26_EN_REC_005",
-            "largoProgramado": 500
-        },
-        "ENR-009": {
-            "azimut": 100,
-            "inclinacion": -80,
-            "recom": "CO_ESP26_N_REC_009",
-            "largoProgramado": 500
-        },
-        "ENR-010": {
-            "azimut": 145,
-            "inclinacion": -85,
-            "recom": "CO_ESP26_N_REC_008",
-            "largoProgramado": 500
+        "ENR-012": {
+            "azimut": 145.0,
+            "inclinacion": -85.0,
+            "recom": "CO_ESP26_N_REC_010",
+            "largoProgramado": 500.0
         },
         "ENR-011": {
-            "azimut": 145,
-            "inclinacion": -85,
+            "azimut": 145.0,
+            "inclinacion": -85.0,
             "recom": "CO_ESP26_N_REC_012",
-            "largoProgramado": 500
-        },
-        "ENR-012": {
-            "azimut": 145,
-            "inclinacion": -85,
-            "recom": "CO_ESP26_N_REC_010",
-            "largoProgramado": 500
-        },
-        "LR-1594": {
-            "azimut": 170,
-            "inclinacion": -70,
-            "recom": "LB1_IN26_REC_022",
-            "largoProgramado": 500
-        },
-        "LR-1597": {
-            "azimut": 170,
-            "inclinacion": -60,
-            "recom": "LB1_IN26_REC_015",
-            "largoProgramado": 500
+            "largoProgramado": 500.0
         },
         "LR-1599": {
-            "azimut": 65,
-            "inclinacion": -80,
+            "azimut": 65.0,
+            "inclinacion": -80.0,
             "recom": "CO_SULF26_VN_REC_010",
-            "largoProgramado": 500
+            "largoProgramado": 500.0
+        },
+        "END-006": {
+            "azimut": 200.0,
+            "inclinacion": -80.0,
+            "recom": "CO_GEOM26_EN_REC_006",
+            "largoProgramado": 500.0
+        },
+        "END-005": {
+            "azimut": 240.0,
+            "inclinacion": -80.0,
+            "recom": "CO_GEOM26_EN_REC_005",
+            "largoProgramado": 500.0
+        },
+        "ENR-013": {
+            "azimut": 145.0,
+            "inclinacion": -85.0,
+            "recom": "CO_ESP26_N_REC_013",
+            "largoProgramado": 500.0
+        },
+        "LR-1597": {
+            "azimut": 170.0,
+            "inclinacion": -60.0,
+            "recom": "LB1_IN26_REC_015",
+            "largoProgramado": 500.0
+        },
+        "END-004": {
+            "azimut": 145.0,
+            "inclinacion": -80.0,
+            "recom": "CO_GEOM26_EN_REC_004",
+            "largoProgramado": 500.0
         }
     }
 }
