@@ -10,11 +10,11 @@
         },
         "EDM95K-108": {
             "modelo": "EDM-95",
-            "metodo": "DDH"
+            "metodo": "RC"
         },
         "EDM95K-109": {
             "modelo": "EDM-95",
-            "metodo": "DDH"
+            "metodo": "RC"
         },
         "SCHRAMM-107": {
             "modelo": "SCHRAMM T685W",
@@ -26,7 +26,7 @@
         },
         "EDM-MP-104": {
             "modelo": "EDM-2000-MP",
-            "metodo": "DDH"
+            "metodo": "RC"
         },
         "LF-90": {
             "modelo": "UDR",
@@ -34,47 +34,16 @@
         },
         "VD8000-22": {
             "modelo": "AVD VD8000",
-            "metodo": "RC"
+            "metodo": "DDH"
         },
         "VD8000-21": {
             "modelo": "AVD VD8000",
-            "metodo": "RC"
+            "metodo": "DDH"
         },
         "LF-90-56": {
             "modelo": "UDR",
             "metodo": "DDH"
         }
     },
-    "pozos": {
-        "ENR-011": {
-            "azimut": 145.0,
-            "inclinacion": -85.0,
-            "recom": "CO_ESP26_N_REC_012",
-            "largoProgramado": 500.0
-        },
-        "LR-1599": {
-            "azimut": 65.0,
-            "inclinacion": -80.0,
-            "recom": "CO_SULF26_VN_REC_010",
-            "largoProgramado": 500.0
-        },
-        "END-006": {
-            "azimut": 200.0,
-            "inclinacion": -80.0,
-            "recom": "CO_GEOM26_EN_REC_006",
-            "largoProgramado": 500.0
-        },
-        "ENR-013": {
-            "azimut": 145.0,
-            "inclinacion": -85.0,
-            "recom": "CO_ESP26_N_REC_013",
-            "largoProgramado": 500.0
-        },
-        "LR-1597": {
-            "azimut": 170.0,
-            "inclinacion": -60.0,
-            "recom": "LB1_IN26_REC_015",
-            "largoProgramado": 500.0
-        }
-    }
+    "pozos": {}
 }
