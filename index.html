@@ -376,17 +376,22 @@
         "LR-1599": { azimut: 65, inclinacion: -80, recom: "CO_SULF26_VN_REC_010", largoProgramado: 500 }
     };
 
-    function actualizarModeloEquipo() {
+function actualizarModeloEquipo() {
     const sondaSeleccionada = document.getElementById('sonda').value;
     const infoSonda = mapaSondas[sondaSeleccionada];
 
-    if (infoSonda) {
-        // Extrae la propiedad .modelo (si es objeto) o el valor directamente (si fuera string)
-        document.getElementById('modeloEquipo').value = typeof infoSonda === 'object' ? (infoSonda.modelo || '') : infoSonda;
-    } else {
+    if (!infoSonda) {
         document.getElementById('modeloEquipo').value = '';
+        return;
     }
-}
+
+    // Si es un objeto, extrae .modelo. Si es un string (texto plano), usa el valor directo.
+    if (typeof infoSonda === 'object' && infoSonda !== null) {
+        document.getElementById('modeloEquipo').value = infoSonda.modelo || '';
+    } else {
+        document.getElementById('modeloEquipo').value = infoSonda;
+    }
+};
 
 
     function poblarPozos() {
@@ -1104,7 +1109,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             datosCargados = data;
             
-            if (data.sondas) {mapaSondas = { ...mapaSondas, ...data.sondas};}
+            if (data.sondas) {
+    Object.keys(data.sondas).forEach(key => {
+        const item = data.sondas[key];
+        if (typeof item === 'object' && item !== null) {
+            mapaSondas[key] = item;
+        } else {
+            // Si en el JSON viene solo texto, lo convierte a objeto automáticamente
+            mapaSondas[key] = { modelo: item, metodo: '' };
+        }
+    });
+}
+
 
             // 1. Llenar desplegable de Sondas
             const selectSonda = document.getElementById('sonda');
@@ -1135,13 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-completar Modelo de Equipo al cambiar la Sonda
     const selectSonda = document.getElementById('sonda');
     if (selectSonda) {
-        selectSonda.addEventListener('change', (e) => {
-            const sondaSel = e.target.value;
-            const inputModelo = document.getElementById('modeloEquipo'); // Ajusta según tu HTML
-            if (inputModelo && datosCargados.sondas && datosCargados.sondas[sondaSel]) {
-                inputModelo.value = datosCargados.sondas[sondaSel];
-            }
-        });
+        selectSonda.addEventListener('change', actualizarModeloEquipo);
     }
 
     // Auto-completar Azimut, Inclinación, Recomendación y Largo al seleccionar un Pozo
