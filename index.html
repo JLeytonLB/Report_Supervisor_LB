@@ -208,16 +208,7 @@
                 <select id="sonda" onchange="actualizarModeloEquipo()">
                     <option value="">-- Seleccionar Sonda --</option>
                     <option value="EDM-5650">EDM-5650</option>
-                    <option value="EDM-5649">EDM-5649</option>
-                    <option value="EDM95K-108">EDM95K-108</option>
-                    <option value="EDM95K-109">EDM95K-109</option>
-                    <option value="SCHRAMM-107">SCHRAMM-107</option>
-                    <option value="SCHRAMM-106">SCHRAMM-106</option>
-                    <option value="EDM-MP-104">EDM-MP-104</option>
-                    <option value="LF-90">LF-90</option>
-                    <option value="VD8000-22">VD8000-22</option>
-                    <option value="VD8000-21">VD8000-21</option>
-                    <option value="LF-90-56">LF-90-56</option>
+                    <option value="SCHRAMM-106">SCHRAMM-106</option>                    
                 </select>
             </div>
             <div class="form-group">
@@ -381,13 +372,6 @@
 
     const datosPozos = {
         "END-004": { azimut: 145, inclinacion: -80, recom: "CO_GEOM26_EN_REC_004", largoProgramado: 500 },
-        "END-005": { azimut: 240, inclinacion: -80, recom: "CO_GEOM26_EN_REC_005", largoProgramado: 500 },
-        "ENR-009": { azimut: 100, inclinacion: -80, recom: "CO_ESP26_N_REC_009", largoProgramado: 500 },
-        "ENR-010": { azimut: 145, inclinacion: -85, recom: "CO_ESP26_N_REC_008", largoProgramado: 500 },
-        "ENR-011": { azimut: 145, inclinacion: -85, recom: "CO_ESP26_N_REC_012", largoProgramado: 500 },
-        "ENR-012": { azimut: 145, inclinacion: -85, recom: "CO_ESP26_N_REC_010", largoProgramado: 500 },
-        "LR-1594": { azimut: 170, inclinacion: -70, recom: "LB1_IN26_REC_022", largoProgramado: 500 },
-        "LR-1597": { azimut: 170, inclinacion: -60, recom: "LB1_IN26_REC_015", largoProgramado: 500 },
         "LR-1599": { azimut: 65, inclinacion: -80, recom: "CO_SULF26_VN_REC_010", largoProgramado: 500 }
     };
 
@@ -805,27 +789,35 @@
     }
                  
 function exportarCSV() {
+
     // 1. Obtener valores para el nombre del archivo
     const sonda = document.getElementById('sonda')?.value.trim() || 'Sonda';
     const fecha = document.getElementById('fecha')?.value.trim() || 'Fecha';
     const turno = document.getElementById('turno')?.value.trim() || 'Turno';
     const pozo = document.getElementById('pozo')?.value.trim() || '';
 
-    // --- LÓGICA DE TRANSFORMACIÓN DE TURNO Y POZO ---
+    // --- LÓGICA DE TRANSFORMACIÓN DE TURNO Y SONDA ---
     // Prefijo: Día -> A | Noche -> B
     const prefijoTurno = turno.toLowerCase().includes('noche') ? 'B' : 'A';
 
-    // Sufijo: Si contiene "R" -> RC | Si contiene "D" -> DDH
-    const pozoUpper = pozo.toUpperCase();
-    let sufijoPozo = '';
-    if (pozoUpper.includes('R')) {
-        sufijoPozo = 'RC';
-    } else if (pozoUpper.includes('D')) {
-        sufijoPozo = 'DDH';
+    // Sufijo asociado a la SONDA (RC o DDH)
+    const selectSonda = document.getElementById('sonda');
+    const optionSonda = selectSonda ? selectSonda.options[selectSonda.selectedIndex] : null;
+
+    // Intenta leer atributo data-metodo del HTML, o lo deduce por el nombre de la sonda
+    let sufijoMetodo = optionSonda?.getAttribute('data-metodo') || '';
+
+    if (!sufijoMetodo) {
+        const sondaUpper = sonda.toUpperCase();
+        if (sondaUpper.includes('SCHRAMM') || sondaUpper.includes('106')) {
+            sufijoMetodo = 'RC';
+        } else if (sondaUpper.includes('EDM') || sondaUpper.includes('5650')) {
+            sufijoMetodo = 'DDH';
+        }
     }
 
     // Código/ID Transformado resultante (ej: A-RC, B-DDH)
-    const idTransformado = sufijoPozo ? `${prefijoTurno}-${sufijoPozo}` : prefijoTurno;
+    const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
 
     const sanitizar = (str) => str.replace(/[/\\?%*:|"<>]/g, '-');
     const nombreArchivo = `Reporte_${idTransformado}_${sanitizar(sonda)}_${sanitizar(fecha)}.csv`;
@@ -896,13 +888,13 @@ function exportarCSV() {
         "VALOR",
         document.getElementById('empresa')?.value || '',
         document.getElementById('proyecto')?.value || '',
-        fechaFormateada, // <-- Se exporta la fecha convertida al formato DD-MMM-YYYY
+        fechaFormateada,
         turno,
         prefijoTurno,
         sonda,
         document.getElementById('modeloEquipo')?.value || '',
         pozo,
-        sufijoPozo,
+        sufijoMetodo,
         idTransformado,
         document.getElementById('recomendacion')?.value || '',
         document.getElementById('inclinacion')?.value || '',
@@ -920,7 +912,7 @@ function exportarCSV() {
         maxHasta,
         avanceTotal,
         '',
-        sufijoPozo,
+        sufijoMetodo,
         "Total Horas",
         obtenerHorasNum('kpiOperativas'),
         obtenerHorasNum('kpiNoOperativas'),
@@ -939,7 +931,7 @@ function exportarCSV() {
     const contenidoCSV = "\uFEFF" + lineas.join("\r\n");
     const blob = new Blob([contenidoCSV], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
-   
+
     const link = document.createElement("a");
     link.setAttribute("href", url);
     link.setAttribute("download", nombreArchivo);
@@ -948,7 +940,8 @@ function exportarCSV() {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 }
-                                             
+
+                  
 function exportarPDF() {
     const sonda = document.getElementById('sonda')?.value || 'Sonda';
     const fecha = document.getElementById('fecha')?.value || 'Fecha';
