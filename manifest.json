@@ -1,6 +1,6 @@
 {
-    "short_name": "Reporte DDH",
-    "name": "Lomas Bayas - Reporte de Turno DDH",
+    "short_name": "Reporte Supervisores",
+    "name": "Lomas Bayas - Report Turno Supervisores",
     "icons": [
         {
             "src": "icon-192.png",
@@ -15,5 +15,3 @@
     "display": "standalone",
     "orientation": "portrait"
 }
-
-
