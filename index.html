@@ -376,9 +376,17 @@
     };
 
     function actualizarModeloEquipo() {
-        const sondaSeleccionada = document.getElementById('sonda').value;
-        document.getElementById('modeloEquipo').value = mapaSondas[sondaSeleccionada] || '';
+    const sondaSeleccionada = document.getElementById('sonda').value;
+    const infoSonda = mapaSondas[sondaSeleccionada];
+
+    if (infoSonda) {
+        // Extrae la propiedad .modelo (si es objeto) o el valor directamente (si fuera string)
+        document.getElementById('modeloEquipo').value = typeof infoSonda === 'object' ? (infoSonda.modelo || '') : infoSonda;
+    } else {
+        document.getElementById('modeloEquipo').value = '';
     }
+}
+
 
     function poblarPozos() {
         const pozoSelect = document.getElementById('pozo');
