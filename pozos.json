@@ -46,12 +46,6 @@
         }
     },
     "pozos": {
-        "ENR-012": {
-            "azimut": 145.0,
-            "inclinacion": -85.0,
-            "recom": "CO_ESP26_N_REC_010",
-            "largoProgramado": 500.0
-        },
         "ENR-011": {
             "azimut": 145.0,
             "inclinacion": -85.0,
