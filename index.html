@@ -957,131 +957,155 @@ function exportarCSV() {
 }
 
 async function guardarEnSharePoint() {
-  // 1. Obtención de variables idénticas a tu exportarCSV()
-  const sonda = document.getElementById('sonda')?.value.trim() || '';
-  const fecha = document.getElementById('fecha')?.value.trim() || '';
-  const turno = document.getElementById('turno')?.value.trim() || '';
-  const pozo = document.getElementById('pozo')?.value.trim() || '';
-
-  const prefijoTurno = turno.toLowerCase().includes('noche') ? 'B' : 'A';
-
-  const selectSonda = document.getElementById('sonda');
-  const optionSonda = selectSonda ? selectSonda.options[selectSonda.selectedIndex] : null;
-
-  let sufijoMetodo = optionSonda?.getAttribute('data-metodo') || '';
-  if (!sufijoMetodo) {
-    const sondaUpper = sonda.toUpperCase();
-    if (sondaUpper.includes('SCHRAMM') || sondaUpper.includes('106')) {
-      sufijoMetodo = 'RC';
-    } else if (sondaUpper.includes('EDM') || sondaUpper.includes('5650')) {
-      sufijoMetodo = 'DDH';
-    }
-  }
-
-  const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
-
-  const formatearFecha = (fechaStr) => {
-    if (!fechaStr || fechaStr === 'Fecha') return fechaStr;
-    const partes = fechaStr.split('-');
-    if (partes.length === 3 && partes[0].length === 4) {
-      const anio = partes[0];
-      const mesIdx = parseInt(partes[1], 10) - 1;
-      const dia = partes[2].padStart(2, '0');
-      const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      const mesNombre = meses[mesIdx] || partes[1];
-      return `${dia}-${mesNombre}-${anio}`;
-    }
-    return fechaStr;
-  };
-
-  const fechaFormateada = formatearFecha(fecha);
-
-  const obtenerHorasNum = (id) => {
-    const txt = document.getElementById(id)?.textContent || '0.0';
-    return parseFloat(txt.replace(/hrs/gi, '').trim()) || 0;
-  };
-
-  // Cálculo de metros
-  const filasPerf = document.querySelectorAll('#bodyPerforacion tr');
-  let desdes = [], hastas = [];
-  filasPerf.forEach(tr => {
-    const valDesde = parseFloat((tr.querySelector('.perf-desde')?.value || '').replace(',', '.'));
-    const valHasta = parseFloat((tr.querySelector('.perf-hasta')?.value || '').replace(',', '.'));
-    if (!isNaN(valDesde)) desdes.push(valDesde);
-    if (!isNaN(valHasta)) hastas.push(valHasta);
-  });
-
-  const minDesde = desdes.length > 0 ? Math.min(...desdes) : 0;
-  const maxHasta = hastas.length > 0 ? Math.max(...hastas) : 0;
-  const avanceTotal = (maxHasta - minDesde) || 0;
-
-  const supervisores = Array.from(document.querySelectorAll('.input-supervisor'))
-    .map(i => i.value.trim()).filter(Boolean).join(' / ');
-
-  const operadores = Array.from(document.querySelectorAll('.input-operador'))
-    .map(i => i.value.trim()).filter(Boolean).join(' / ');
-
-  // 2. Mapeo de campos a la Lista de SharePoint
-  const payload = {
-    "Title": `Reporte_${idTransformado}_${sonda}_${fechaFormateada}`,
-    "SECCI_x00d3_N": "Datos Generales",
-    "CAMPO": "VALOR",
-    "Empresa": document.getElementById('empresa')?.value || '',
-    "Proyecto_x0020__x002f__x0020_Se": document.getElementById('proyecto')?.value || '',
-    "Fecha_x0020_del_x0020_Turno": fechaFormateada,
-    "Turno": turno,
-    "C_x00f3_digo_x0020_de_x0020_turn": prefijoTurno,
-    "N_x0021__x0020_de_x0020_sonda": sonda,
-    "Modelo_x0020_Equipo": document.getElementById('modeloEquipo')?.value || '',
-    "N_x0021__x0020_de_x0020_pozo": pozo,
-    "Tipo_x0020_Sondaje": sufijoMetodo,
-    "ID_x0020_Transformado": idTransformado,
-    "Recomendaci_x00f3_n": document.getElementById('recomendacion')?.value || '',
-    "Inclinaci_x00f3_n_x0020__x0028_": parseFloat(document.getElementById('inclinacion')?.value || '0'),
-    "Azimut_x0020__x0028__x00b0__x00": parseFloat(document.getElementById('azimut')?.value || '0'),
-    "Largo_x0020_Programado_x0020__": parseFloat(document.getElementById('largoProgramado')?.value || '0'),
-    "Jefe_x0020_de_x0020_Faena": document.getElementById('jefeFaena')?.value || '',
-    "Asesor_x0020_T_x00e9_cnico": document.getElementById('asesorTecnico')?.value || '',
-    "Supervisores": supervisores,
-    "Operadores": operadores,
-    "Casing_x0020__x0028_m_x0029_": parseFloat(document.getElementById('casingMetros')?.value || '0'),
-    "Di_x00e1_metro_x0020_Casing": document.getElementById('casingDiametro')?.value || '',
-    "Detalle_x0020_Observaciones": document.getElementById('observaciones')?.value || '',
-    "N_x0021__x0020_Tramo": 1,
-    "Desde_x0020__x0028_m_x0029_": minDesde,
-    "Hasta_x0020__x0028_m_x0029_": maxHasta,
-    "Avance_x0020__x0028_m_x0029_": avanceTotal,
-    "Indicador_x0020_KPI": "Total Horas",
-    "Horas_x0020_Operativas": obtenerHorasNum('kpiOperativas'),
-    "Horas_x0020_No_x0020_Operativas": obtenerHorasNum('kpiNoOperativas'),
-    "Horas_x0020_Mec_x00e1_nicas": obtenerHorasNum('kpiMecanicas'),
-    "Horas_x0020_Perforadas": obtenerHorasNum('kpiPerforadas'),
-    "Total_x0020_Horas_x0020_Turno": obtenerHorasNum('kpiTotalHoras')
-  };
-
-  // 3. Enviar a SharePoint mediante API REST
-  const endpoint = "https://glencore.sharepoint.com/sites/CLSIGEOLOGIA727/_api/web/lists/getbytitle('Reportes_Sondajes')/items";
+  const btn = document.querySelector('.btn-nube');
+  const textoOriginal = btn ? btn.innerHTML : '☁️ Subir a la Nube';
 
   try {
+    if (btn) btn.innerHTML = '☁️ Subiendo...';
+
+    const siteUrl = "https://glencore.sharepoint.com/sites/CLSIGEOLOGIA727";
+
+    // 1. Obtener el Request Digest Token de SharePoint para autorizar la petición
+    const digestRes = await fetch(`${siteUrl}/_api/contextinfo`, {
+      method: "POST",
+      headers: { "Accept": "application/json;odata=verbose" }
+    });
+
+    if (!digestRes.ok) {
+      throw new Error("Debe iniciar sesión en SharePoint en este navegador.");
+    }
+
+    const digestData = await digestRes.json();
+    const requestDigest = digestData.d.GetContextWebInformation.FormDigestValue;
+
+    // 2. Extraer y preparar datos del formulario
+    const sonda = document.getElementById('sonda')?.value.trim() || '';
+    const fecha = document.getElementById('fecha')?.value.trim() || '';
+    const turno = document.getElementById('turno')?.value.trim() || '';
+    const pozo = document.getElementById('pozo')?.value.trim() || '';
+
+    const prefijoTurno = turno.toLowerCase().includes('noche') ? 'B' : 'A';
+
+    const selectSonda = document.getElementById('sonda');
+    const optionSonda = selectSonda ? selectSonda.options[selectSonda.selectedIndex] : null;
+
+    let sufijoMetodo = optionSonda?.getAttribute('data-metodo') || '';
+    if (!sufijoMetodo) {
+      const sondaUpper = sonda.toUpperCase();
+      if (sondaUpper.includes('SCHRAMM') || sondaUpper.includes('106')) {
+        sufijoMetodo = 'RC';
+      } else if (sondaUpper.includes('EDM') || sondaUpper.includes('5650')) {
+        sufijoMetodo = 'DDH';
+      }
+    }
+
+    const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
+
+    const formatearFecha = (fechaStr) => {
+      if (!fechaStr || fechaStr === 'Fecha') return fechaStr;
+      const partes = fechaStr.split('-');
+      if (partes.length === 3 && partes[0].length === 4) {
+        const anio = partes[0];
+        const mesIdx = parseInt(partes[1], 10) - 1;
+        const dia = partes[2].padStart(2, '0');
+        const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const mesNombre = meses[mesIdx] || partes[1];
+        return `${dia}-${mesNombre}-${anio}`;
+      }
+      return fechaStr;
+    };
+
+    const fechaFormateada = formatearFecha(fecha);
+
+    const obtenerHorasNum = (id) => {
+      const txt = document.getElementById(id)?.textContent || '0.0';
+      return parseFloat(txt.replace(/hrs/gi, '').trim()) || 0;
+    };
+
+    const filasPerf = document.querySelectorAll('#bodyPerforacion tr');
+    let desdes = [], hastas = [];
+    filasPerf.forEach(tr => {
+      const valDesde = parseFloat((tr.querySelector('.perf-desde')?.value || '').replace(',', '.'));
+      const valHasta = parseFloat((tr.querySelector('.perf-hasta')?.value || '').replace(',', '.'));
+      if (!isNaN(valDesde)) desdes.push(valDesde);
+      if (!isNaN(valHasta)) hastas.push(valHasta);
+    });
+
+    const minDesde = desdes.length > 0 ? Math.min(...desdes) : 0;
+    const maxHasta = hastas.length > 0 ? Math.max(...hastas) : 0;
+    const avanceTotal = (maxHasta - minDesde) || 0;
+
+    const supervisores = Array.from(document.querySelectorAll('.input-supervisor'))
+      .map(i => i.value.trim()).filter(Boolean).join(' / ');
+
+    const operadores = Array.from(document.querySelectorAll('.input-operador'))
+      .map(i => i.value.trim()).filter(Boolean).join(' / ');
+
+    // 3. Objeto con los datos formateados para SharePoint
+    const payload = {
+      "__metadata": { "type": "SP.Data.Reportes_x005f_SondajesListItem" },
+      "Title": `Reporte_${idTransformado}_${sonda}_${fechaFormateada}`,
+      "SECCI_x00d3_N": "Datos Generales",
+      "CAMPO": "VALOR",
+      "Empresa": document.getElementById('empresa')?.value || '',
+      "Proyecto_x0020__x002f__x0020_Se": document.getElementById('proyecto')?.value || '',
+      "Fecha_x0020_del_x0020_Turno": fechaFormateada,
+      "Turno": turno,
+      "C_x00f3_digo_x0020_de_x0020_turn": prefijoTurno,
+      "N_x0021__x0020_de_x0020_sonda": sonda,
+      "Modelo_x0020_Equipo": document.getElementById('modeloEquipo')?.value || '',
+      "N_x0021__x0020_de_x0020_pozo": pozo,
+      "Tipo_x0020_Sondaje": sufijoMetodo,
+      "ID_x0020_Transformado": idTransformado,
+      "Recomendaci_x00f3_n": document.getElementById('recomendacion')?.value || '',
+      "Inclinaci_x00f3_n_x0020__x0028_": parseFloat(document.getElementById('inclinacion')?.value || '0'),
+      "Azimut_x0020__x0028__x00b0__x00": parseFloat(document.getElementById('azimut')?.value || '0'),
+      "Largo_x0020_Programado_x0020__": parseFloat(document.getElementById('largoProgramado')?.value || '0'),
+      "Jefe_x0020_de_x0020_Faena": document.getElementById('jefeFaena')?.value || '',
+      "Asesor_x0020_T_x00e9_cnico": document.getElementById('asesorTecnico')?.value || '',
+      "Supervisores": supervisores,
+      "Operadores": operadores,
+      "Casing_x0020__x0028_m_x0029_": parseFloat(document.getElementById('casingMetros')?.value || '0'),
+      "Di_x00e1_metro_x0020_Casing": document.getElementById('casingDiametro')?.value || '',
+      "Detalle_x0020_Observaciones": document.getElementById('observaciones')?.value || '',
+      "N_x0021__x0020_Tramo": 1,
+      "Desde_x0020__x0028_m_x0029_": minDesde,
+      "Hasta_x0020__x0028_m_x0029_": maxHasta,
+      "Avance_x0020__x0028_m_x0029_": avanceTotal,
+      "Indicador_x0020_KPI": "Total Horas",
+      "Horas_x0020_Operativas": obtenerHorasNum('kpiOperativas'),
+      "Horas_x0020_No_x0020_Operativas": obtenerHorasNum('kpiNoOperativas'),
+      "Horas_x0020_Mec_x00e1_nicas": obtenerHorasNum('kpiMecanicas'),
+      "Horas_x0020_Perforadas": obtenerHorasNum('kpiPerforadas'),
+      "Total_x0020_Horas_x0020_Turno": obtenerHorasNum('kpiTotalHoras')
+    };
+
+    // 4. Petición POST final
+    const endpoint = `${siteUrl}/_api/web/lists/getbytitle('Reportes_Sondajes')/items`;
+
     const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Accept': 'application/json;odata=verbose',
-        'Content-Type': 'application/json;odata=verbose'
+        'Content-Type': 'application/json;odata=verbose',
+        'X-RequestDigest': requestDigest
       },
       body: JSON.stringify(payload)
     });
 
     if (res.ok) {
-      alert("✅ Reporte cargado exitosamente a la nube.");
+      alert("☁️ Reporte subido a la nube correctamente.");
     } else {
-      alert("⚠️ Error al enviar a SharePoint. Verifica conexión.");
+      alert("⚠️ Error al subir a SharePoint. Revisa que las columnas coincidan.");
     }
   } catch (err) {
     console.error("Error:", err);
+    alert("⚠️ Para subir reportes, asegúrate de haber iniciado sesión en SharePoint en este navegador.");
+  } finally {
+    if (btn) btn.innerHTML = textoOriginal;
   }
 }
-                    
+                  
                                              
                   
 function exportarPDF() {
