@@ -956,159 +956,132 @@ function exportarCSV() {
     URL.revokeObjectURL(url);
 }
 
-function exportarCSV() {
+async function guardarEnSharePoint() {
+  // 1. Obtención de variables idénticas a tu exportarCSV()
+  const sonda = document.getElementById('sonda')?.value.trim() || '';
+  const fecha = document.getElementById('fecha')?.value.trim() || '';
+  const turno = document.getElementById('turno')?.value.trim() || '';
+  const pozo = document.getElementById('pozo')?.value.trim() || '';
 
-    // 1. Obtener valores para el nombre del archivo
-    const sonda = document.getElementById('sonda')?.value.trim() || 'Sonda';
-    const fecha = document.getElementById('fecha')?.value.trim() || 'Fecha';
-    const turno = document.getElementById('turno')?.value.trim() || 'Turno';
-    const pozo = document.getElementById('pozo')?.value.trim() || '';
+  const prefijoTurno = turno.toLowerCase().includes('noche') ? 'B' : 'A';
 
-    // --- LÓGICA DE TRANSFORMACIÓN DE TURNO Y SONDA ---
-    // Prefijo: Día -> A | Noche -> B
-    const prefijoTurno = turno.toLowerCase().includes('noche') ? 'B' : 'A';
+  const selectSonda = document.getElementById('sonda');
+  const optionSonda = selectSonda ? selectSonda.options[selectSonda.selectedIndex] : null;
 
-    // Sufijo asociado a la SONDA (RC o DDH)
-    const selectSonda = document.getElementById('sonda');
-    const optionSonda = selectSonda ? selectSonda.options[selectSonda.selectedIndex] : null;
-
-    // Intenta leer atributo data-metodo del HTML, o lo deduce por el nombre de la sonda
-    let sufijoMetodo = optionSonda?.getAttribute('data-metodo') || '';
-
-    if (!sufijoMetodo) {
-        const sondaUpper = sonda.toUpperCase();
-        if (sondaUpper.includes('SCHRAMM') || sondaUpper.includes('106')) {
-            sufijoMetodo = 'RC';
-        } else if (sondaUpper.includes('EDM') || sondaUpper.includes('5650')) {
-            sufijoMetodo = 'DDH';
-        }
+  let sufijoMetodo = optionSonda?.getAttribute('data-metodo') || '';
+  if (!sufijoMetodo) {
+    const sondaUpper = sonda.toUpperCase();
+    if (sondaUpper.includes('SCHRAMM') || sondaUpper.includes('106')) {
+      sufijoMetodo = 'RC';
+    } else if (sondaUpper.includes('EDM') || sondaUpper.includes('5650')) {
+      sufijoMetodo = 'DDH';
     }
+  }
 
-    // Código/ID Transformado resultante (ej: A-RC, B-DDH)
-    const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
+  const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
 
-    const sanitizar = (str) => str.replace(/[/\\?%*:|"<>]/g, '-');
-    const nombreArchivo = `Reporte_${idTransformado}_${sanitizar(sonda)}_${sanitizar(fecha)}.csv`;
+  const formatearFecha = (fechaStr) => {
+    if (!fechaStr || fechaStr === 'Fecha') return fechaStr;
+    const partes = fechaStr.split('-');
+    if (partes.length === 3 && partes[0].length === 4) {
+      const anio = partes[0];
+      const mesIdx = parseInt(partes[1], 10) - 1;
+      const dia = partes[2].padStart(2, '0');
+      const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const mesNombre = meses[mesIdx] || partes[1];
+      return `${dia}-${mesNombre}-${anio}`;
+    }
+    return fechaStr;
+  };
 
-    const esc = (val) => `"${String(val ?? '').replace(/"/g, '""')}"`;
-    const separador = ";"; // Delimitador para Excel en español
+  const fechaFormateada = formatearFecha(fecha);
 
-    // --- HELPER PARA FORMATEAR FECHA A FORMATO DD-MMM-YYYY (ej: 30-Sep-2026) ---
-    const formatearFecha = (fechaStr) => {
-        if (!fechaStr || fechaStr === 'Fecha') return fechaStr;
-        const partes = fechaStr.split('-');
-        if (partes.length === 3 && partes[0].length === 4) {
-            const anio = partes[0];
-            const mesIdx = parseInt(partes[1], 10) - 1;
-            const dia = partes[2].padStart(2, '0');
-            const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const mesNombre = meses[mesIdx] || partes[1];
-            return `${dia}-${mesNombre}-${anio}`;
-        }
-        return fechaStr;
-    };
+  const obtenerHorasNum = (id) => {
+    const txt = document.getElementById(id)?.textContent || '0.0';
+    return parseFloat(txt.replace(/hrs/gi, '').trim()) || 0;
+  };
 
-    const fechaFormateada = formatearFecha(fecha);
+  // Cálculo de metros
+  const filasPerf = document.querySelectorAll('#bodyPerforacion tr');
+  let desdes = [], hastas = [];
+  filasPerf.forEach(tr => {
+    const valDesde = parseFloat((tr.querySelector('.perf-desde')?.value || '').replace(',', '.'));
+    const valHasta = parseFloat((tr.querySelector('.perf-hasta')?.value || '').replace(',', '.'));
+    if (!isNaN(valDesde)) desdes.push(valDesde);
+    if (!isNaN(valHasta)) hastas.push(valHasta);
+  });
 
-    // Helper para limpiar las horas y dejar SOLO el número (elimina 'hrs')
-    const obtenerHorasNum = (id) => {
-        const txt = document.getElementById(id)?.textContent || '0.0';
-        return txt.replace(/hrs/gi, '').trim();
-    };
+  const minDesde = desdes.length > 0 ? Math.min(...desdes) : 0;
+  const maxHasta = hastas.length > 0 ? Math.max(...hastas) : 0;
+  const avanceTotal = (maxHasta - minDesde) || 0;
 
-    // --- CÁLCULO REGISTRO DE PERFORACIÓN ---
-    const filasPerf = document.querySelectorAll('#bodyPerforacion tr');
-    let desdes = [];
-    let hastas = [];
+  const supervisores = Array.from(document.querySelectorAll('.input-supervisor'))
+    .map(i => i.value.trim()).filter(Boolean).join(' / ');
 
-    filasPerf.forEach(tr => {
-        const valDesde = parseFloat((tr.querySelector('.perf-desde')?.value || '').replace(',', '.'));
-        const valHasta = parseFloat((tr.querySelector('.perf-hasta')?.value || '').replace(',', '.'));
-        if (!isNaN(valDesde)) desdes.push(valDesde);
-        if (!isNaN(valHasta)) hastas.push(valHasta);
+  const operadores = Array.from(document.querySelectorAll('.input-operador'))
+    .map(i => i.value.trim()).filter(Boolean).join(' / ');
+
+  // 2. Mapeo de campos a la Lista de SharePoint
+  const payload = {
+    "Title": `Reporte_${idTransformado}_${sonda}_${fechaFormateada}`,
+    "SECCI_x00d3_N": "Datos Generales",
+    "CAMPO": "VALOR",
+    "Empresa": document.getElementById('empresa')?.value || '',
+    "Proyecto_x0020__x002f__x0020_Se": document.getElementById('proyecto')?.value || '',
+    "Fecha_x0020_del_x0020_Turno": fechaFormateada,
+    "Turno": turno,
+    "C_x00f3_digo_x0020_de_x0020_turn": prefijoTurno,
+    "N_x0021__x0020_de_x0020_sonda": sonda,
+    "Modelo_x0020_Equipo": document.getElementById('modeloEquipo')?.value || '',
+    "N_x0021__x0020_de_x0020_pozo": pozo,
+    "Tipo_x0020_Sondaje": sufijoMetodo,
+    "ID_x0020_Transformado": idTransformado,
+    "Recomendaci_x00f3_n": document.getElementById('recomendacion')?.value || '',
+    "Inclinaci_x00f3_n_x0020__x0028_": parseFloat(document.getElementById('inclinacion')?.value || '0'),
+    "Azimut_x0020__x0028__x00b0__x00": parseFloat(document.getElementById('azimut')?.value || '0'),
+    "Largo_x0020_Programado_x0020__": parseFloat(document.getElementById('largoProgramado')?.value || '0'),
+    "Jefe_x0020_de_x0020_Faena": document.getElementById('jefeFaena')?.value || '',
+    "Asesor_x0020_T_x00e9_cnico": document.getElementById('asesorTecnico')?.value || '',
+    "Supervisores": supervisores,
+    "Operadores": operadores,
+    "Casing_x0020__x0028_m_x0029_": parseFloat(document.getElementById('casingMetros')?.value || '0'),
+    "Di_x00e1_metro_x0020_Casing": document.getElementById('casingDiametro')?.value || '',
+    "Detalle_x0020_Observaciones": document.getElementById('observaciones')?.value || '',
+    "N_x0021__x0020_Tramo": 1,
+    "Desde_x0020__x0028_m_x0029_": minDesde,
+    "Hasta_x0020__x0028_m_x0029_": maxHasta,
+    "Avance_x0020__x0028_m_x0029_": avanceTotal,
+    "Indicador_x0020_KPI": "Total Horas",
+    "Horas_x0020_Operativas": obtenerHorasNum('kpiOperativas'),
+    "Horas_x0020_No_x0020_Operativas": obtenerHorasNum('kpiNoOperativas'),
+    "Horas_x0020_Mec_x00e1_nicas": obtenerHorasNum('kpiMecanicas'),
+    "Horas_x0020_Perforadas": obtenerHorasNum('kpiPerforadas'),
+    "Total_x0020_Horas_x0020_Turno": obtenerHorasNum('kpiTotalHoras')
+  };
+
+  // 3. Enviar a SharePoint mediante API REST
+  const endpoint = "https://glencore.sharepoint.com/sites/CLSIGEOLOGIA727/_api/web/lists/getbytitle('Reportes_Sondajes')/items";
+
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json;odata=verbose',
+        'Content-Type': 'application/json;odata=verbose'
+      },
+      body: JSON.stringify(payload)
     });
 
-    const minDesde = desdes.length > 0 ? Math.min(...desdes) : '';
-    const maxHasta = hastas.length > 0 ? Math.max(...hastas) : '';
-    const avanceTotal = (typeof minDesde === 'number' && typeof maxHasta === 'number') ? (maxHasta - minDesde) : '';
-
-    // --- RESPONSABLES ---
-    const supervisores = Array.from(document.querySelectorAll('.input-supervisor'))
-        .map(i => i.value.trim()).filter(Boolean).join(' / ');
-
-    const operadores = Array.from(document.querySelectorAll('.input-operador'))
-        .map(i => i.value.trim()).filter(Boolean).join(' / ');
-
-    // --- ESTRUCTURA HORIZONTAL (EXACTAMENTE 2 FILAS) ---
-    const cabeceraHorizontal = [
-        "SECCIÓN", "CAMPO", "Empresa", "Proyecto / Sector", "Fecha del Turno", "Turno",
-        "Código Turno (Prefijo)", "N° de Sonda", "Modelo Equipo", "N° de Pozo",
-        "Tipo Sondaje (Sufijo)", "ID Transformado", "Recomendación", "Inclinación (°)",
-        "Azimut (°)", "Largo Programado (m)", "Jefe de Faena", "Asesor Técnico",
-        "Supervisores", "Operadores", "Casing (m)", "Diámetro Casing",
-        "Detalle Observaciones", "N° Tramo", "Desde (m)", "Hasta (m)", "Avance (m)",
-        "Diámetro", "Tipo Sondaje", "Indicador KPI", "Horas Operativas",
-        "Horas No Operativas", "Horas Mecánicas", "Horas Perforadas (Cód 17)", "Total Horas Turno"
-    ];
-
-    const datosHorizontal = [
-        "Datos Generales",
-        "VALOR",
-        document.getElementById('empresa')?.value || '',
-        document.getElementById('proyecto')?.value || '',
-        fechaFormateada,
-        turno,
-        prefijoTurno,
-        sonda,
-        document.getElementById('modeloEquipo')?.value || '',
-        pozo,
-        sufijoMetodo,
-        idTransformado,
-        document.getElementById('recomendacion')?.value || '',
-        document.getElementById('inclinacion')?.value || '',
-        document.getElementById('azimut')?.value || '',
-        document.getElementById('largoProgramado')?.value || '',
-        document.getElementById('jefeFaena')?.value || '',
-        document.getElementById('asesorTecnico')?.value || '',
-        supervisores,
-        operadores,
-        document.getElementById('casingMetros')?.value || '',
-        document.getElementById('casingDiametro')?.value || '',
-        document.getElementById('observaciones')?.value || '',
-        1,
-        minDesde,
-        maxHasta,
-        avanceTotal,
-        '',
-        sufijoMetodo,
-        "Total Horas",
-        obtenerHorasNum('kpiOperativas'),
-        obtenerHorasNum('kpiNoOperativas'),
-        obtenerHorasNum('kpiMecanicas'),
-        obtenerHorasNum('kpiPerforadas'),
-        obtenerHorasNum('kpiTotalHoras')
-    ];
-
-    let lineas = [];
-    // Fila 1: Nombres de columnas
-    lineas.push(cabeceraHorizontal.map(esc).join(separador));
-    // Fila 2: Datos
-    lineas.push(datosHorizontal.map(esc).join(separador));
-
-    // Descargar CSV con UTF-8 BOM
-    const contenidoCSV = "\uFEFF" + lineas.join("\r\n");
-    const blob = new Blob([contenidoCSV], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", nombreArchivo);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-}                                          
-                                             
+    if (res.ok) {
+      alert("✅ Reporte cargado exitosamente a la nube.");
+    } else {
+      alert("⚠️ Error al enviar a SharePoint. Verifica conexión.");
+    }
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+                    
                                              
                   
 function exportarPDF() {
