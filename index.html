@@ -341,7 +341,8 @@
 
         <!-- ACCIONES -->
         <div class="btn-actions">
-            <button type="button" class="btn btn-clear" onclick="limpiarForm()">Limpiar</button>     
+            <button type="button" class="btn btn-clear" onclick="limpiarForm()">Limpiar</button>
+            <button type="button" class="btn btn-nube" onclick="guardarEnSharePoint()">☁️ Subir a la Nube</button>      
             <button type="button" class="btn btn-csv" onclick="exportarCSV()">📊 Exportar a Excel</button>
             <button type="button" class="btn btn-pdf" onclick="exportarPDF()">📄 Exportar PDF</button>
         </div>
@@ -954,7 +955,154 @@ function exportarCSV() {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 }
-                                      
+
+async function guardarEnAirtable() {
+  const btn = document.querySelector('.btn-nube');
+  const textoOriginal = btn ? btn.innerHTML : '☁️️ Subir a la Nube';
+
+  // ⚠️ REEMPLAZA ESTOS DATOS CON TUS CLAVES DE AIRTABLE:
+  const AIRTABLE_PAT = "patG91XdIVd17Nhmj.23da282d749fbfc0f17a6a2a4d97941631a0eb38da8d3f014bfa25a9d8b82215"; 
+  const BASE_ID = "apphXUcixupFIqDZF";
+  const TABLE_NAME = "Table 1"; // O el nombre exacto de la tabla/pestaña en Airtable
+
+  try {
+    if (btn) btn.innerHTML = '☁️ Subiendo...';
+
+    // 1. Obtener variables del formulario
+    const sonda = document.getElementById('sonda')?.value.trim() || '';
+    const fecha = document.getElementById('fecha')?.value.trim() || '';
+    const turno = document.getElementById('turno')?.value.trim() || '';
+    const pozo = document.getElementById('pozo')?.value.trim() || '';
+
+    const prefijoTurno = turno.toLowerCase().includes('noche') ? 'B' : 'A';
+
+    const selectSonda = document.getElementById('sonda');
+    const optionSonda = selectSonda ? selectSonda.options[selectSonda.selectedIndex] : null;
+
+    let sufijoMetodo = optionSonda?.getAttribute('data-metodo') || '';
+    if (!sufijoMetodo) {
+      const sondaUpper = sonda.toUpperCase();
+      if (sondaUpper.includes('SCHRAMM') || sondaUpper.includes('106')) {
+        sufijoMetodo = 'RC';
+      } else if (sondaUpper.includes('EDM') || sondaUpper.includes('5650')) {
+        sufijoMetodo = 'DDH';
+      }
+    }
+
+    const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
+
+    const formatearFecha = (fechaStr) => {
+      if (!fechaStr || fechaStr === 'Fecha') return fechaStr;
+      const partes = fechaStr.split('-');
+      if (partes.length === 3 && partes[0].length === 4) {
+        const anio = partes[0];
+        const mesIdx = parseInt(partes[1], 10) - 1;
+        const dia = partes[2].padStart(2, '0');
+        const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const mesNombre = meses[mesIdx] || partes[1];
+        return `${dia}-${mesNombre}-${anio}`;
+      }
+      return fechaStr;
+    };
+
+    const fechaFormateada = formatearFecha(fecha);
+
+    const obtenerHorasNum = (id) => {
+      const txt = document.getElementById(id)?.textContent || '0.0';
+      return parseFloat(txt.replace(/hrs/gi, '').trim()) || 0;
+    };
+
+    // Metros de perforación
+    const filasPerf = document.querySelectorAll('#bodyPerforacion tr');
+    let desdes = [], hastas = [];
+    filasPerf.forEach(tr => {
+      const valDesde = parseFloat((tr.querySelector('.perf-desde')?.value || '').replace(',', '.'));
+      const valHasta = parseFloat((tr.querySelector('.perf-hasta')?.value || '').replace(',', '.'));
+      if (!isNaN(valDesde)) desdes.push(valDesde);
+      if (!isNaN(valHasta)) hastas.push(valHasta);
+    });
+
+    const minDesde = desdes.length > 0 ? Math.min(...desdes) : 0;
+    const maxHasta = hastas.length > 0 ? Math.max(...hastas) : 0;
+    const avanceTotal = (maxHasta - minDesde) || 0;
+
+    const supervisores = Array.from(document.querySelectorAll('.input-supervisor'))
+      .map(i => i.value.trim()).filter(Boolean).join(' / ');
+
+    const operadores = Array.from(document.querySelectorAll('.input-operador'))
+      .map(i => i.value.trim()).filter(Boolean).join(' / ');
+
+    // 2. Formatear payload para la API de Airtable
+    const payload = {
+      records: [
+        {
+          fields: {
+            "Title": `Reporte_${idTransformado}_${sonda}_${fechaFormateada}`,
+            "SECCIÓN": "Datos Generales",
+            "CAMPO": "VALOR",
+            "Empresa": document.getElementById('empresa')?.value || '',
+            "Proyecto / Sector": document.getElementById('proyecto')?.value || '',
+            "Fecha del Turno": fechaFormateada,
+            "Turno": turno,
+            "Código de turno": prefijoTurno,
+            "N° de sonda": sonda,
+            "Modelo Equipo": document.getElementById('modeloEquipo')?.value || '',
+            "N° de pozo": pozo,
+            "Tipo Sondaje": sufijoMetodo,
+            "ID Transformado": idTransformado,
+            "Recomendación": document.getElementById('recomendacion')?.value || '',
+            "Inclinación (°)": parseFloat(document.getElementById('inclinacion')?.value || '0'),
+            "Azimut (°)": parseFloat(document.getElementById('azimut')?.value || '0'),
+            "Largo Programado (m)": parseFloat(document.getElementById('largoProgramado')?.value || '0'),
+            "Jefe de Faena": document.getElementById('jefeFaena')?.value || '',
+            "Asesor Técnico": document.getElementById('asesorTecnico')?.value || '',
+            "Supervisores": supervisores,
+            "Operadores": operadores,
+            "Casing (m)": parseFloat(document.getElementById('casingMetros')?.value || '0'),
+            "Diámetro Casing": document.getElementById('casingDiametro')?.value || '',
+            "Detalle Observaciones": document.getElementById('observaciones')?.value || '',
+            "N° Tramo": 1,
+            "Desde (m)": minDesde,
+            "Hasta (m)": maxHasta,
+            "Avance (m)": avanceTotal,
+            "Indicador KPI": "Total Horas",
+            "Horas Operativas": obtenerHorasNum('kpiOperativas'),
+            "Horas No Operativas": obtenerHorasNum('kpiNoOperativas'),
+            "Horas Mecánicas": obtenerHorasNum('kpiMecanicas'),
+            "Horas Perforadas": obtenerHorasNum('kpiPerforadas'),
+            "Total Horas Turno": obtenerHorasNum('kpiTotalHoras')
+          }
+        }
+      ]
+    };
+
+    // 3. Petición POST directa a Airtable
+    const endpoint = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${AIRTABLE_PAT}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      alert("☁️ Reporte subido exitosamente a Airtable.");
+    } else {
+      const errData = await res.json();
+      console.error("Airtable Error:", errData);
+      alert("⚠️ Error al subir a Airtable. Revisa los nombres de las columnas.");
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("⚠️ Error de conexión al intentar subir.");
+  } finally {
+    if (btn) btn.innerHTML = textoOriginal;
+  }
+}
+                                            
                   
 function exportarPDF() {
     const sonda = document.getElementById('sonda')?.value || 'Sonda';
