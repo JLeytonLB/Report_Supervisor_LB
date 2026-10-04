@@ -956,19 +956,22 @@ function exportarCSV() {
     URL.revokeObjectURL(url);
 }
 
-async function guardarEnAirtable() {
+async function guardarEnNube() {
   const btn = document.querySelector('.btn-nube');
-  const textoOriginal = btn ? btn.innerHTML : '☁️️ Subir a la Nube';
+  const textoOriginal = btn ? btn.innerHTML : '☁️ Subir a la Nube';
 
-  // ⚠️ REEMPLAZA ESTOS DATOS CON TUS CLAVES DE AIRTABLE:
-  const AIRTABLE_PAT = "patG91XdIVd17Nhmj.23da282d749fbfc0f17a6a2a4d97941631a0eb38da8d3f014bfa25a9d8b82215"; 
+  // Claves de Airtable
+  const AIRTABLE_PAT = "patG91XdIVd17Nhmj.23da282d749fbfc0f17a6a2a4d97941631a0eb38da8d3f014bfa25a9d8b82215";
   const BASE_ID = "apphXUcixupFIqDZF";
-  const TABLE_NAME = "Table 1"; // O el nombre exacto de la tabla/pestaña en Airtable
+  const TABLE_NAME = "Table 1";
+
+  // URL SharePoint Lomas
+  const siteUrl = "https://glencore.sharepoint.com/sites/CLSIGEOLOGIA727";
 
   try {
-    if (btn) btn.innerHTML = '☁️ Subiendo...';
+    if (btn) btn.innerHTML = '☁️ Procesando...';
 
-    // 1. Obtener variables del formulario
+    // 1. Lectura de campos del formulario
     const sonda = document.getElementById('sonda')?.value.trim() || '';
     const fecha = document.getElementById('fecha')?.value.trim() || '';
     const turno = document.getElementById('turno')?.value.trim() || '';
@@ -1006,10 +1009,12 @@ async function guardarEnAirtable() {
     };
 
     const fechaFormateada = formatearFecha(fecha);
+    const tituloUnico = `Reporte_${idTransformado}_${sonda}_${fechaFormateada}`;
 
-    const obtenerHorasNum = (id) => {
+    // Extrae sólo el número sin la palabra "hrs" (ej: "5.5")
+    const obtenerHorasTexto = (id) => {
       const txt = document.getElementById(id)?.textContent || '0.0';
-      return parseFloat(txt.replace(/hrs/gi, '').trim()) || 0;
+      return txt.replace(/hrs/gi, '').trim() || '0.0';
     };
 
     // Metros de perforación
@@ -1032,77 +1037,168 @@ async function guardarEnAirtable() {
     const operadores = Array.from(document.querySelectorAll('.input-operador'))
       .map(i => i.value.trim()).filter(Boolean).join(' / ');
 
-    // 2. Formatear payload para la API de Airtable
-    const payload = {
-      records: [
-        {
-          fields: {
-            "Title": `Reporte_${idTransformado}_${sonda}_${fechaFormateada}`,
-            "SECCIÓN": "Datos Generales",
-            "CAMPO": "VALOR",
-            "Empresa": document.getElementById('empresa')?.value || '',
-            "Proyecto / Sector": document.getElementById('proyecto')?.value || '',
-            "Fecha del Turno": fechaFormateada,
-            "Turno": turno,
-            "Código de turno": prefijoTurno,
-            "N° de sonda": sonda,
-            "Modelo Equipo": document.getElementById('modeloEquipo')?.value || '',
-            "N° de pozo": pozo,
-            "Tipo Sondaje": sufijoMetodo,
-            "ID Transformado": idTransformado,
-            "Recomendación": document.getElementById('recomendacion')?.value || '',
-            "Inclinación (°)": parseFloat(document.getElementById('inclinacion')?.value || '0'),
-            "Azimut (°)": parseFloat(document.getElementById('azimut')?.value || '0'),
-            "Largo Programado (m)": parseFloat(document.getElementById('largoProgramado')?.value || '0'),
-            "Jefe de Faena": document.getElementById('jefeFaena')?.value || '',
-            "Asesor Técnico": document.getElementById('asesorTecnico')?.value || '',
-            "Supervisores": supervisores,
-            "Operadores": operadores,
-            "Casing (m)": parseFloat(document.getElementById('casingMetros')?.value || '0'),
-            "Diámetro Casing": document.getElementById('casingDiametro')?.value || '',
-            "Detalle Observaciones": document.getElementById('observaciones')?.value || '',
-            "N° Tramo": 1,
-            "Desde (m)": minDesde,
-            "Hasta (m)": maxHasta,
-            "Avance (m)": avanceTotal,
-            "Indicador KPI": "Total Horas",
-            "Horas Operativas": obtenerHorasNum('kpiOperativas'),
-            "Horas No Operativas": obtenerHorasNum('kpiNoOperativas'),
-            "Horas Mecánicas": obtenerHorasNum('kpiMecanicas'),
-            "Horas Perforadas": obtenerHorasNum('kpiPerforadas'),
-            "Total Horas Turno": obtenerHorasNum('kpiTotalHoras')
-          }
-        }
-      ]
+    // 2. Todos los valores como Texto de 1 Línea (String) con horas limpias sin "hrs"
+    const datosNormales = {
+      "Title": String(tituloUnico),
+      "SECCIÓN": "Datos Generales",
+      "CAMPO": "VALOR",
+      "Empresa": String(document.getElementById('empresa')?.value || ''),
+      "Proyecto / Sector": String(document.getElementById('proyecto')?.value || ''),
+      "Fecha del Turno": String(fechaFormateada),
+      "Turno": String(turno),
+      "Código de turno": String(prefijoTurno),
+      "N° de sonda": String(sonda),
+      "Modelo Equipo": String(document.getElementById('modeloEquipo')?.value || ''),
+      "N° de pozo": String(pozo),
+      "Tipo Sondaje": String(sufijoMetodo),
+      "ID Transformado": String(idTransformado),
+      "Recomendación": String(document.getElementById('recomendacion')?.value || ''),
+      "Inclinación (°)": String(document.getElementById('inclinacion')?.value || '0'),
+      "Azimut (°)": String(document.getElementById('azimut')?.value || '0'),
+      "Largo Programado (m)": String(document.getElementById('largoProgramado')?.value || '0'),
+      "Jefe de Faena": String(document.getElementById('jefeFaena')?.value || ''),
+      "Asesor Técnico": String(document.getElementById('asesorTecnico')?.value || ''),
+      "Supervisores": String(supervisores),
+      "Operadores": String(operadores),
+      "Casing (m)": String(document.getElementById('casingMetros')?.value || '0'),
+      "Diámetro Casing": String(document.getElementById('casingDiametro')?.value || ''),
+      "Detalle Observaciones": String(document.getElementById('observaciones')?.value || ''),
+      "N° Tramo": "1",
+      "Desde (m)": String(minDesde),
+      "Hasta (m)": String(maxHasta),
+      "Avance (m)": String(avanceTotal),
+      "Indicador KPI": "Total Horas",
+      "Horas Operativas": obtenerHorasTexto('kpiOperativas'),
+      "Horas No Operativas": obtenerHorasTexto('kpiNoOperativas'),
+      "Horas Mecánicas": obtenerHorasTexto('kpiMecanicas'),
+      "Horas Perforadas": obtenerHorasTexto('kpiPerforadas'),
+      "Total Horas Turno": obtenerHorasTexto('kpiTotalHoras')
     };
 
-    // 3. Petición POST directa a Airtable
-    const endpoint = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+    let subidoSharePoint = false;
+    let subidoAirtable = false;
+    let esActualizacionAirtable = false;
 
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${AIRTABLE_PAT}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+    // --- 1. PROCESO SHAREPOINT LOMAS ---
+    try {
+      const digestRes = await fetch(`${siteUrl}/_api/contextinfo`, {
+        method: "POST",
+        headers: { "Accept": "application/json;odata=verbose" }
+      });
 
-    if (res.ok) {
-      alert("☁️ Reporte subido exitosamente a Airtable.");
-    } else {
-      const errData = await res.json();
-      console.error("Airtable Error:", errData);
-      alert("⚠️ Error al subir a Airtable. Revisa los nombres de las columnas.");
+      if (digestRes.ok) {
+        const digestData = await digestRes.json();
+        const requestDigest = digestData.d.GetContextWebInformation.FormDigestValue;
+
+        const payloadSP = {
+          "__metadata": { "type": "SP.Data.Reportes_x005f_SondajesListItem" },
+          ...datosNormales
+        };
+
+        const spRes = await fetch(`${siteUrl}/_api/web/lists/getbytitle('Reportes_Sondajes')/items`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json;odata=verbose',
+            'Content-Type': 'application/json;odata=verbose',
+            'X-RequestDigest': requestDigest
+          },
+          body: JSON.stringify(payloadSP)
+        });
+
+        if (spRes.ok) subidoSharePoint = true;
+      }
+    } catch (eSP) {
+      console.warn("SharePoint Lomas no disponible actualmente:", eSP);
     }
+
+    // --- 2. PROCESO AIRTABLE (BÚSQUEDA Y SOBREESCRITURA / CREACIÓN) ---
+    try {
+      // Paso A: Buscar si ya existe un registro con ese mismo Title
+      const filterFormula = encodeURIComponent(`{Title}='${tituloUnico}'`);
+      const searchUrl = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}?filterByFormula=${filterFormula}`;
+
+      const searchRes = await fetch(searchUrl, {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${AIRTABLE_PAT}` }
+      });
+
+      let existingRecordId = null;
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        if (searchData.records && searchData.records.length > 0) {
+          existingRecordId = searchData.records[0].id; // ID interno de Airtable
+        }
+      }
+
+      // Paso B: Si existe, hace PATCH (Sobreescribe). Si no existe, hace POST (Crea nuevo).
+      let airtableEndpoint = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
+      let httpMethod = 'POST';
+      let payloadAirtable = {};
+
+      if (existingRecordId) {
+        // Sobreescribir registro existente
+        httpMethod = 'PATCH';
+        esActualizacionAirtable = true;
+        payloadAirtable = {
+          records: [
+            {
+              id: existingRecordId,
+              fields: datosNormales
+            }
+          ]
+        };
+      } else {
+        // Crear registro nuevo
+        httpMethod = 'POST';
+        payloadAirtable = {
+          records: [
+            {
+              fields: datosNormales
+            }
+          ]
+        };
+      }
+
+      const airtableRes = await fetch(airtableEndpoint, {
+        method: httpMethod,
+        headers: {
+          'Authorization': `Bearer ${AIRTABLE_PAT}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payloadAirtable)
+      });
+
+      if (airtableRes.ok) {
+        subidoAirtable = true;
+      } else {
+        const errData = await airtableRes.json();
+        console.error("Error Airtable:", errData);
+        alert(`⚠️ Error Airtable: ${errData.error?.message || 'Revisa el nombre de las columnas en Airtable'}`);
+      }
+    } catch (eAir) {
+      console.error("Error al conectar con Airtable:", eAir);
+    }
+
+    // --- MENSAJES DE CONFIRMACIÓN AL USUARIO ---
+    const accionTexto = esActualizacionAirtable ? "actualizado" : "creado";
+
+    if (subidoSharePoint && subidoAirtable) {
+      alert(`✅ Reporte ${accionTexto} exitosamente en SharePoint Lomas y respaldo en Airtable.`);
+    } else if (subidoAirtable) {
+      alert(`☁️️ Reporte ${accionTexto} exitosamente en Airtable (Respaldo Nube).`);
+    } else if (subidoSharePoint) {
+      alert(`✅ Reporte ${accionTexto} en SharePoint Lomas.`);
+    }
+
   } catch (err) {
-    console.error("Error:", err);
-    alert("⚠️ Error de conexión al intentar subir.");
+    console.error("Error general:", err);
+    alert("⚠️ Ocurrió un error inesperado al procesar la solicitud.");
   } finally {
     if (btn) btn.innerHTML = textoOriginal;
   }
 }
-                                            
+
+                                  
                   
 function exportarPDF() {
     const sonda = document.getElementById('sonda')?.value || 'Sonda';
