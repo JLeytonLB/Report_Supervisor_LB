@@ -1111,10 +1111,11 @@ async function guardarEnNube() {
       console.warn("SharePoint Lomas no disponible actualmente:", eSP);
     }
 
-    // --- 2. PROCESO AIRTABLE (BÚSQUEDA Y SOBREESCRITURA / CREACIÓN) ---
+     // --- 2. PROCESO AIRTABLE (BÚSQUEDA Y SOBREESCRITURA / CREACIÓN) ---
     try {
-      // Paso A: Buscar si ya existe un registro con ese mismo Title
-      const filterFormula = encodeURIComponent(`{Title}='${tituloUnico}'`);
+      // Búsqueda limpia escapando comillas
+      const tituloEscapado = tituloUnico.replace(/'/g, "\\'");
+      const filterFormula = encodeURIComponent(`{Title}='${tituloEscapado}'`);
       const searchUrl = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}?filterByFormula=${filterFormula}`;
 
       const searchRes = await fetch(searchUrl, {
@@ -1126,17 +1127,18 @@ async function guardarEnNube() {
       if (searchRes.ok) {
         const searchData = await searchRes.json();
         if (searchData.records && searchData.records.length > 0) {
-          existingRecordId = searchData.records[0].id; // ID interno de Airtable
+          // Si encuentra un registro previo con el mismo Title, toma su ID
+          existingRecordId = searchData.records[0].id; 
         }
       }
 
-      // Paso B: Si existe, hace PATCH (Sobreescribe). Si no existe, hace POST (Crea nuevo).
+      // Endpoint y método según corresponda (PATCH si existe, POST si es nuevo)
       let airtableEndpoint = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`;
       let httpMethod = 'POST';
       let payloadAirtable = {};
 
       if (existingRecordId) {
-        // Sobreescribir registro existente
+        // Sobreescribir el registro existente usando PATCH
         httpMethod = 'PATCH';
         esActualizacionAirtable = true;
         payloadAirtable = {
@@ -1148,7 +1150,7 @@ async function guardarEnNube() {
           ]
         };
       } else {
-        // Crear registro nuevo
+        // Crear nuevo registro
         httpMethod = 'POST';
         payloadAirtable = {
           records: [
@@ -1173,11 +1175,12 @@ async function guardarEnNube() {
       } else {
         const errData = await airtableRes.json();
         console.error("Error Airtable:", errData);
-        alert(`⚠️ Error Airtable: ${errData.error?.message || 'Revisa el nombre de las columnas en Airtable'}`);
+        alert(`⚠️ Error Airtable: ${errData.error?.message || 'Revisa columnas'}`);
       }
     } catch (eAir) {
       console.error("Error al conectar con Airtable:", eAir);
     }
+  
 
     // --- MENSAJES DE CONFIRMACIÓN AL USUARIO ---
     const accionTexto = esActualizacionAirtable ? "actualizado" : "creado";
