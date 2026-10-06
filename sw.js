@@ -1,7 +1,9 @@
-const CACHE_NAME = 'lomas-ddh-v1';
+const CACHE_NAME = 'lomas-ddh-v2';
+
 const ASSETS = [
     './',
     './index.html',
+    './Reporte_Sondaje.html',
     './manifest.json',
     './pozos.json',
     './icon-192.png'
@@ -62,7 +64,6 @@ self.addEventListener('fetch', (event) => {
                 return cachedResponse;
             }
             return fetch(event.request).then((networkResponse) => {
-                // Permite guardar respuestas locales (basic) y de librerías CDN externas (cors)
                 if (!networkResponse || networkResponse.status !== 200 || (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')) {
                     return networkResponse;
                 }
@@ -75,4 +76,3 @@ self.addEventListener('fetch', (event) => {
         })
     );
 });
-
