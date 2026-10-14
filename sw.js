@@ -1,11 +1,11 @@
-const CACHE_NAME = 'lomas-ddh-v2';
-
+const CACHE_NAME = 'lomas-ddh-v3';
 const ASSETS = [
     './',
     './index.html',
     './Reporte_Sondaje.html',
     './manifest.json',
     './pozos.json',
+    './usuarios.json',
     './icon-192.png'
 ];
 
@@ -41,8 +41,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
 
-    // Estrategia Network-First para pozos.json (Siempre prioriza datos frescos del servidor)
-    if (url.pathname.endsWith('pozos.json')) {
+    // Estrategia Network-First para pozos.json y usuarios.json (Siempre prioriza datos frescos del servidor)
+    if (url.pathname.endsWith('pozos.json') || url.pathname.endsWith('usuarios.json')) {
         event.respondWith(
             fetch(event.request)
                 .then((networkResponse) => {
@@ -64,6 +64,7 @@ self.addEventListener('fetch', (event) => {
                 return cachedResponse;
             }
             return fetch(event.request).then((networkResponse) => {
+                // Permite guardar respuestas locales (basic) y de librerías CDN externas (cors)
                 if (!networkResponse || networkResponse.status !== 200 || (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')) {
                     return networkResponse;
                 }

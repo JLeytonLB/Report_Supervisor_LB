@@ -1,0 +1,23 @@
+[
+  {
+    "rut": "17017922-6",
+    "password": "9226",
+    "nombre": "Jonathan Leyton",
+    "rol": "mandante",
+    "paginaDestino": "report-sondas.html"
+  },
+  {
+    "rut": "12345678-9",
+    "password": "6789",
+    "nombre": "Supervisor Turno",
+    "rol": "supervisor",
+    "paginaDestino": "index.html"
+  },
+  {
+    "rut": "8678910-1",
+    "password": "9101",
+    "nombre": "Operador Terreno",
+    "rol": "operador",
+    "paginaDestino": "report-sondas.html"
+  }
+]
