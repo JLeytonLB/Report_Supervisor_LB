@@ -263,12 +263,14 @@
                 <img src="data:image/png;base64,[códigode imagenbase64] alt="Logo Lomas Bayas" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span style="display:none; font-weight:bold; color:#004b87;">LOMAS BAYAS</span>
             </td>
-        <td width="50%">
-            <div class="title">REPORTE DE TURNO - SUPERVISORES<br><span id="sub-tipo-reporte" style="font-size:13px; color:#004b87;">(DDH / RC)</span></div>
-            
-            <!-- AQUÍ VA EL BOTÓN -->
-            <a href="Reporte_Sondaje.html" class="btn-switch-report">🚜 Ir a Reporte Sondaje</a>
-        </td>
+<td width="50%">
+    <div class="title">REPORTE DE TURNO - SUPERVISORES<br><span id="sub-tipo-reporte" style="font-size:13px; color:#004b87;">(DDH / RC)</span></div>
+    <div style="margin-top: 6px;">
+        <a href="Reporte_Sondaje.html" class="btn-switch-report" style="margin-right: 5px;">🚜 Ir a Reporte</a>
+        <button type="button" onclick="cerrarSesion()" style="background-color: #ef4444; color: white; border: none; padding: 6px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; cursor: pointer;">🚪 Salir</button>
+    </div>
+</td>
+
         <td width="25%"><span class="badge" id="status-json">● Conectando pozos.json...</span></td>
     </tr>
 </table>
