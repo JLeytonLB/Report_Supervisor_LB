@@ -449,12 +449,22 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const passInput = document.getElementById('password').value.trim();
     const errorMsg = document.getElementById('errorMsg');
 
-    try {
-        const response = await fetch('usuarios.json?v=' + new Date().getTime());
+        try {
+        let response;
+        try {
+            // Intenta buscar la versión más fresca desde internet con el timestamp
+            response = await fetch('usuarios.json?v=' + new Date().getTime());
+            if (!response.ok) throw new Error('No se pudo cargar de la red');
+        } catch (e) {
+            // Si no hay internet (offline), usa la versión guardada en la caché del PWA
+            response = await fetch('usuarios.json');
+        }
+
         if (!response.ok) throw new Error('No se pudo cargar usuarios.json');
-        
+
         const usuarios = await response.json();
         const usuarioEncontrado = usuarios.find(u => u.rut === rutInput && u.password === passInput);
+
 
         if (usuarioEncontrado) {
             localStorage.setItem('usuarioActivo', JSON.stringify(usuarioEncontrado));

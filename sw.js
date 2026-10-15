@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lomas-ddh-v4';
+const CACHE_NAME = 'lomas-ddh-v5';
 const ASSETS = [
     './',
     './index.html',
