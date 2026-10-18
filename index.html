@@ -1498,56 +1498,68 @@ function cargarBorradorSilencioso() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     let datosCargados = {};
 
-    // Cargar pozos.json con timestamp para evitar caché
-    fetch('pozos.json?v=' + new Date().getTime())
-        .then(response => {
-            if (!response.ok) throw new Error('No se pudo abrir pozos.json');
-            return response.json();
-        })
-        .then(data => {
-            datosCargados = data;
-            
-            if (data.sondas) {
-    Object.keys(data.sondas).forEach(key => {
-        const item = data.sondas[key];
-        if (typeof item === 'object' && item !== null) {
-            mapaSondas[key] = item;
-        } else {
-            // Si en el JSON viene solo texto, lo convierte a objeto automáticamente
-            mapaSondas[key] = { modelo: item, metodo: '' };
+    try {
+        let response;
+        try {
+            // 1. Intenta buscar la versión más fresca desde la red con timestamp
+            response = await fetch('pozos.json?v=' + new Date().getTime());
+            if (!response.ok) throw new Error('No se pudo cargar de la red');
+        } catch (e) {
+            // 2. Si no hay internet (offline), carga el respaldo desde la caché del PWA
+            response = await fetch('pozos.json');
         }
-    });
-}
 
+        if (!response.ok) throw new Error('No se pudo abrir pozos.json');
+        
+        const data = await response.json();
+        datosCargados = data;
+       
+        if (data.sondas) {
+            Object.keys(data.sondas).forEach(key => {
+                const item = data.sondas[key];
+                if (typeof item === 'object' && item !== null) {
+                    mapaSondas[key] = item;
+                } else {
+                    mapaSondas[key] = { modelo: item, metodo: '' };
+                }
+            });
+        }
 
-            // 1. Llenar desplegable de Sondas
-            const selectSonda = document.getElementById('sonda');
-            if (selectSonda && data.sondas) {
-                selectSonda.innerHTML = '<option value="">Seleccionar Sonda...</option>';
-                Object.keys(data.sondas).forEach(sonda => {
-                    const opt = document.createElement('option');
-                    opt.value = sonda;
-                    opt.textContent = sonda;
-                    selectSonda.appendChild(opt);
-                });
+        // 1. Llenar desplegable de Sondas
+        const selectSonda = document.getElementById('sonda');
+        if (selectSonda && data.sondas) {
+            selectSonda.innerHTML = '<option value="">Seleccionar Sonda...</option>';
+            Object.keys(data.sondas).forEach(sonda => {
+                const opt = document.createElement('option');
+                opt.value = sonda;
+                opt.textContent = sonda;
+                selectSonda.appendChild(opt);
+            });
+        }
+
+        // 2. Llenar desplegable de Pozos de forma dinámica con los datos del JSON
+        const selectPozo = document.getElementById('pozo');
+        if (selectPozo && data.pozos) {
+            selectPozo.innerHTML = '<option value="">Seleccionar Pozo...</option>';
+            Object.keys(data.pozos).forEach(pozo => {
+                const opt = document.createElement('option');
+                opt.value = pozo;
+                opt.textContent = pozo;
+                selectPozo.appendChild(opt);
+            });
+            
+            // Actualizamos también el objeto global por si otras funciones lo usan
+            if (typeof datosPozos !== 'undefined') {
+                Object.assign(datosPozos, data.pozos);
             }
+        }
 
-            // 2. Llenar desplegable de Pozos
-            const selectPozo = document.getElementById('pozo'); // Verifica el id de tu campo de pozos
-            if (selectPozo && data.pozos) {
-                selectPozo.innerHTML = '<option value="">Seleccionar Pozo...</option>';
-                Object.keys(data.pozos).forEach(pozo => {
-                    const opt = document.createElement('option');
-                    opt.value = pozo;
-                    opt.textContent = pozo;
-                    selectPozo.appendChild(opt);
-                });
-            }
-        })
-        .catch(err => console.error('Error al cargar datos del JSON:', err));
+    } catch (err) {
+        console.error('Error al cargar datos del JSON:', err);
+    }
 
     // Auto-completar Modelo de Equipo al cambiar la Sonda
     const selectSonda = document.getElementById('sonda');
@@ -1562,8 +1574,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const pozoSel = e.target.value;
             if (datosCargados.pozos && datosCargados.pozos[pozoSel]) {
                 const info = datosCargados.pozos[pozoSel];
-                
-                // Asigna los datos a cada campo de formulario si existen en el HTML
+               
                 if (document.getElementById('azimut')) document.getElementById('azimut').value = info.azimut;
                 if (document.getElementById('inclinacion')) document.getElementById('inclinacion').value = info.inclinacion;
                 if (document.getElementById('recomendacion')) document.getElementById('recomendacion').value = info.recom;
@@ -1572,6 +1583,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
                                              
                                              
 <!-- Registro del Service Worker para PWA / Offline -->
