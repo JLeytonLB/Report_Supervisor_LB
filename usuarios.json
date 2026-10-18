@@ -14,8 +14,8 @@
         "paginaDestino": "index.html"
     },
     {
-        "rut": "8678910-1",
-        "password": "9101",
+        "rut": "5679012-3",
+        "password": "0123",
         "nombre": "Operador Terreno",
         "rol": "operador",
         "paginaDestino": "report-sondas.html"
