@@ -7,8 +7,50 @@
         "paginaDestino": "report-sondas.html"
     },
     {
-        "rut": "12345678-9",
-        "password": "6789",
+        "rut": "15729170-k",
+        "password": "170k",
+        "nombre": "Supervisor Turno",
+        "rol": "supervisor",
+        "paginaDestino": "index.html"
+    },
+    {
+        "rut": "11820879-k",
+        "password": "879k",
+        "nombre": "Supervisor Turno",
+        "rol": "supervisor",
+        "paginaDestino": "index.html"
+    },
+    {
+        "rut": "16442246-1",
+        "password": "2461",
+        "nombre": "Supervisor Turno",
+        "rol": "supervisor",
+        "paginaDestino": "index.html"
+    },
+    {
+        "rut": "22061909-5",
+        "password": "9095",
+        "nombre": "Supervisor Turno",
+        "rol": "supervisor",
+        "paginaDestino": "index.html"
+    },
+    {
+        "rut": "16580408-2",
+        "password": "4082",
+        "nombre": "Supervisor Turno",
+        "rol": "supervisor",
+        "paginaDestino": "index.html"
+    },
+    {
+        "rut": "13481657-0",
+        "password": "6570",
+        "nombre": "Supervisor Turno",
+        "rol": "supervisor",
+        "paginaDestino": "index.html"
+    },
+    {
+        "rut": "13785855-k",
+        "password": "855k",
         "nombre": "Supervisor Turno",
         "rol": "supervisor",
         "paginaDestino": "index.html"
