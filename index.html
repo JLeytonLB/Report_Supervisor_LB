@@ -990,7 +990,7 @@ function exportarCSV() {
     const idTransformado = sufijoMetodo ? `${prefijoTurno}-${sufijoMetodo}` : prefijoTurno;
 
     const sanitizar = (str) => str.replace(/[/\\?%*:|"<>]/g, '-');
-    const nombreArchivo = `Reporte_${idTransformado}_${sanitizar(sonda)}_${sanitizar(fecha)}.csv`;
+    const nombreArchivo = ``${sanitizar(sonda)}_${sanitizar(fecha)}_${sanitizar(turno)}.csv`;
 
     const esc = (val) => `"${String(val ?? '').replace(/"/g, '""')}"`;
     const separador = ";"; // Delimitador para Excel en español
