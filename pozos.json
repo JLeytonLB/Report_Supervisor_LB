@@ -4,14 +4,6 @@
             "modelo": "EDM-2000",
             "metodo": "DDH"
         },
-        "EDM-5649": {
-            "modelo": "EDM-2000",
-            "metodo": "DDH"
-        },
-        "EDM95K-108": {
-            "modelo": "EDM-95",
-            "metodo": "RC"
-        },
         "EDM95K-109": {
             "modelo": "EDM-95",
             "metodo": "RC"
@@ -19,30 +11,6 @@
         "SCHRAMM-107": {
             "modelo": "SCHRAMM T685W",
             "metodo": "RC"
-        },
-        "SCHRAMM-106": {
-            "modelo": "SCHRAMM T685W",
-            "metodo": "RC"
-        },
-        "EDM-MP-104": {
-            "modelo": "EDM-2000-MP",
-            "metodo": "RC"
-        },
-        "LF-90": {
-            "modelo": "UDR",
-            "metodo": "DDH"
-        },
-        "VD8000-22": {
-            "modelo": "AVD VD8000",
-            "metodo": "RC"
-        },
-        "VD8000-21": {
-            "modelo": "AVD VD8000",
-            "metodo": "RC"
-        },
-        "LF-90-56": {
-            "modelo": "UDR",
-            "metodo": "DDH"
         }
     },
     "pozos": {
