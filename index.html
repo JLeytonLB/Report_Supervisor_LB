@@ -1406,51 +1406,83 @@ function ejecutarGuardadoSilencioso() {
     }
 }
                                              
-function guardarBorradorSilencioso() {
-    const borrador = {
-        empresa: document.getElementById('empresa')?.value || '',
-        proyecto: document.getElementById('proyecto')?.value || '',
-        fecha: document.getElementById('fecha')?.value || '',
-        turno: document.getElementById('turno')?.value || '',
-        sonda: document.getElementById('sonda')?.value || '',
-        modeloEquipo: document.getElementById('modeloEquipo')?.value || '',
-        pozo: document.getElementById('pozo')?.value || '',
-        recomendacion: document.getElementById('recomendacion')?.value || '',
-        inclinacion: document.getElementById('inclinacion')?.value || '',
-        azimut: document.getElementById('azimut')?.value || '',
-        largoProgramado: document.getElementById('largoProgramado')?.value || '',
-        jefeFaena: document.getElementById('jefeFaena')?.value || '',
-        asesorTecnico: document.getElementById('asesorTecnico')?.value || '',
-        casingMetros: document.getElementById('casingMetros')?.value || '',
-        casingDiametro: document.getElementById('casingDiametro')?.value || '',
-        observaciones: document.getElementById('observaciones')?.value || '',
-        supervisores: Array.from(document.querySelectorAll('.input-supervisor')).map(i => i.value),
-        operadores: Array.from(document.querySelectorAll('.input-operador')).map(i => i.value),
-        actividades: Array.from(document.querySelectorAll('#bodyActividades tr')).map(tr => ({
-            desde: tr.querySelector('.act-desde')?.value || '',
-            hasta: tr.querySelector('.act-hasta')?.value || '',
-            codigo: tr.querySelector('.act-codigo')?.value || ''
-        })),
-        perforacion: Array.from(document.querySelectorAll('#bodyPerforacion tr')).map(tr => ({
-            desde: tr.querySelector('.perf-desde')?.value || '',
-            hasta: tr.querySelector('.perf-hasta')?.value || '',
-            avance: tr.querySelector('.perf-avance')?.value || '',
-            diametro: tr.querySelector('.perf-diametro')?.value || ''
-        }))
-    };
+function guardarBorradoresSilencioso() {
+  const sondaSelect = document.getElementById('sonda');
+  const sondaVal = sondaSelect ? sondaSelect.value.trim() : '';
+  
+  if (!sondaVal || sondaVal.includes('Seleccionar')) return; // No guardar si no hay sonda seleccionada
 
-    localStorage.setItem('borrador_reporte_lomas', JSON.stringify(borrador));
+  const borrador = {
+    empresa: document.getElementById('empresa')?.value || '',
+    proyecto: document.getElementById('proyecto')?.value || '',
+    fecha: document.getElementById('fecha')?.value || '',
+    turno: document.getElementById('turno')?.value || '',
+    sonda: sondaVal,
+    modeloEquipo: document.getElementById('modeloEquipo')?.value || '',
+    pozo: document.getElementById('pozo')?.value || '',
+    recomendacion: document.getElementById('recomendacion')?.value || '',
+    inclinacion: document.getElementById('inclinacion')?.value || '',
+    azimut: document.getElementById('azimut')?.value || '',
+    largoProgramado: document.getElementById('largoProgramado')?.value || '',
+    jefeFaena: document.getElementById('jefeFaena')?.value || '',
+    asesorTecnico: document.getElementById('asesorTecnico')?.value || '',
+    casingMetros: document.getElementById('casingMetros')?.value || '',
+    casingDiametro: document.getElementById('casingDiametro')?.value || '',
+    observaciones: document.getElementById('observaciones')?.value || '',
+    
+    // Capturar supervisores y operadores
+    supervisores: Array.from(document.querySelectorAll('.input-supervisor')).map(i => i.value.trim()).filter(Boolean),
+    operadores: Array.from(document.querySelectorAll('.input-operador')).map(i => i.value.trim()).filter(Boolean),
+    
+    // Capturar tablas
+    actividades: Array.from(document.querySelectorAll('#bodyActividades tr')).map(tr => ({
+      desde: tr.querySelector('.act-desde')?.value || '',
+      hasta: tr.querySelector('.act-hasta')?.value || '',
+      codigo: tr.querySelector('.act-codigo')?.value || ''
+    })),
+    perforacion: Array.from(document.querySelectorAll('#bodyPerforacion tr')).map(tr => ({
+      desde: tr.querySelector('.perf-desde')?.value || '',
+      hasta: tr.querySelector('.perf-hasta')?.value || '',
+      avance: tr.querySelector('.perf-avance')?.value || '',
+      diametro: tr.querySelector('.perf-diametro')?.value || ''
+    }))
+  };
+
+  // Guardar en localStorage usando la sonda como parte del nombre de la llave
+  localStorage.setItem(`borrador_sonda_${sondaVal}`, JSON.stringify(borrador));
 }
 
-document.getElementById('foracoForm').addEventListener('input', activarAutoGuardado);
-document.getElementById('foracoForm').addEventListener('change', activarAutoGuardado);
+// Función para cargar el borrador de la sonda seleccionada
+function cargarBorradorPorSonda() {
+  const sondaSelect = document.getElementById('sonda');
+  const sondaVal = sondaSelect ? sondaSelect.value.trim() : '';
+  
+  if (!sondaVal || sondaVal.includes('Seleccionar')) return;
 
-window.addEventListener('DOMContentLoaded', () => {
-    const rawData = localStorage.getItem('borrador_reporte_lomas');
-    if (rawData) {
-        cargarBorradorSilencioso();
+  const rawData = localStorage.getItem(`borrador_sonda_${sondaVal}`);
+  if (!rawData) {
+    // Si no hay borrador para esta sonda, se pueden limpiar campos o dejar por defecto
+    return;
+  }
+
+  try {
+    const data = JSON.parse(rawData);
+    
+    // Rellenar campos estáticos
+    const camposEstaticos = ['empresa', 'proyecto', 'fecha', 'turno', 'modeloEquipo', 'pozo', 'recomendacion', 'inclinacion', 'azimut', 'largoProgramado', 'jefeFaena', 'asesorTecnico', 'casingMetros', 'casingDiametro', 'observaciones'];
+    camposEstaticos.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && data[id] !== undefined) el.value = data[id];
+    });
+
+    if (data.pozo) {
+      if (typeof agregarPozoManual === 'function') agregarPozoManual(data.pozo);
     }
-});
+  } catch (e) {
+    console.error("Error al cargar borrador de la sonda:", e);
+  }
+}
+
                                             
 function cargarBorradorSilencioso() {
     try {
@@ -1563,9 +1595,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Auto-completar Modelo de Equipo al cambiar la Sonda
     const selectSonda = document.getElementById('sonda');
-    if (selectSonda) {
-        selectSonda.addEventListener('change', actualizarModeloEquipo);
-    }
+if (selectSonda) {
+  selectSonda.addEventListener('change', () => {
+    actualizarModeloEquipo(); // Lo que ya tenías
+    cargarBorradorPorSonda(); // Carga el avance guardado de esta sonda específica
+  });
+}
+
 
     // Auto-completar Azimut, Inclinación, Recomendación y Largo al seleccionar un Pozo
     const selectPozo = document.getElementById('pozo');
