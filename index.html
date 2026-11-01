@@ -1460,30 +1460,38 @@ function cargarBorradorPorSonda() {
   if (!sondaVal || sondaVal.includes('Seleccionar')) return;
 
   const rawData = localStorage.getItem(`borrador_sonda_${sondaVal}`);
+  
+  // Limpiar campos primero para evitar que queden datos de otra sonda
+  const camposEstaticos = ['empresa', 'proyecto', 'fecha', 'turno', 'modeloEquipo', 'pozo', 'recomendacion', 'inclinacion', 'azimut', 'largoProgramado', 'jefeFaena', 'asesorTecnico', 'casingMetros', 'casingDiametro', 'observaciones'];
+  camposEstaticos.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+
   if (!rawData) {
-    // Si no hay borrador para esta sonda, se pueden limpiar campos o dejar por defecto
+    console.log(`No hay borrador previo para la sonda: ${sondaVal}`);
     return;
   }
 
   try {
     const data = JSON.parse(rawData);
     
-    // Rellenar campos estáticos
-    const camposEstaticos = ['empresa', 'proyecto', 'fecha', 'turno', 'modeloEquipo', 'pozo', 'recomendacion', 'inclinacion', 'azimut', 'largoProgramado', 'jefeFaena', 'asesorTecnico', 'casingMetros', 'casingDiametro', 'observaciones'];
+    // Rellenar campos estáticos con los datos guardados
     camposEstaticos.forEach(id => {
       const el = document.getElementById(id);
       if (el && data[id] !== undefined) el.value = data[id];
     });
 
-    if (data.pozo) {
-      if (typeof agregarPozoManual === 'function') agregarPozoManual(data.pozo);
+    if (data.pozo && typeof agregarPozoManual === 'function') {
+      agregarPozoManual(data.pozo);
     }
+    
+    console.log(`Borrador cargado con éxito para la sonda: ${sondaVal}`);
   } catch (e) {
     console.error("Error al cargar borrador de la sonda:", e);
   }
 }
-
-                                            
+                                           
 function cargarBorradorSilencioso() {
     try {
         const rawData = localStorage.getItem('borrador_reporte_lomas');
