@@ -1601,14 +1601,62 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error al cargar datos del JSON:', err);
     }
 
-    // Auto-completar Modelo de Equipo al cambiar la Sonda
-    const selectSonda = document.getElementById('sonda');
+    let sondaSeleccionadaAnterior = '';
+
+const selectSonda = document.getElementById('sonda');
 if (selectSonda) {
+  // Al hacer foco o clic, anotamos cuál sonda estaba activa
+  selectSonda.addEventListener('focus', () => {
+    sondaSeleccionadaAnterior = selectSonda.value;
+  });
+
   selectSonda.addEventListener('change', () => {
-    actualizarModeloEquipo(); // Lo que ya tenías
-    cargarBorradorPorSonda(); // Carga el avance guardado de esta sonda específica
+    const sondaNueva = selectSonda.value;
+
+    // 1. Si había una sonda anterior válida, guardamos su estado actual antes de irnos
+    if (sondaSeleccionadaAnterior && !sondaSeleccionadaAnterior.includes('Seleccionar')) {
+      const borradorAnterior = {
+        proyecto: document.getElementById('proyecto')?.value || '',
+        pozo: document.getElementById('pozo')?.value || '',
+        observaciones: document.getElementById('observaciones')?.value || '',
+        inclinacion: document.getElementById('inclinacion')?.value || '',
+        azimut: document.getElementById('azimut')?.value || '',
+        largoProgramado: document.getElementById('largoProgramado')?.value || ''
+      };
+      localStorage.setItem(`borrador_sonda_${sondaSeleccionadaAnterior}`, JSON.stringify(borradorAnterior));
+    }
+
+    // 2. Actualizamos el modelo del equipo (función que ya tenías)
+    if (typeof actualizarModeloEquipo === 'function') {
+      actualizarModeloEquipo();
+    }
+
+    // 3. Cargamos los datos de la NUEVA sonda seleccionada (si existen en localStorage)
+    const datosGuardados = localStorage.getItem(`borrador_sonda_${sondaNueva}`);
+    
+    // Limpiar campos primero
+    if (document.getElementById('proyecto')) document.getElementById('proyecto').value = '';
+    if (document.getElementById('observaciones')) document.getElementById('observaciones').value = '';
+    
+    if (datosGuardados) {
+      try {
+        const parsed = JSON.parse(datosGuardados);
+        if (document.getElementById('proyecto')) document.getElementById('proyecto').value = parsed.proyecto || '';
+        if (document.getElementById('pozo')) document.getElementById('pozo').value = parsed.pozo || '';
+        if (document.getElementById('observaciones')) document.getElementById('observaciones').value = parsed.observaciones || '';
+        if (document.getElementById('inclinacion')) document.getElementById('inclinacion').value = parsed.inclinacion || '';
+        if (document.getElementById('azimut')) document.getElementById('azimut').value = parsed.azimut || '';
+        if (document.getElementById('largoProgramado')) document.getElementById('largoProgramado').value = parsed.largoProgramado || '';
+      } catch (e) {
+        console.error("Error al leer borrador de sonda:", e);
+      }
+    }
+
+    // 4. Actualizamos la referencia
+    sondaSeleccionadaAnterior = sondaNueva;
   });
 }
+
 
 
     // Auto-completar Azimut, Inclinación, Recomendación y Largo al seleccionar un Pozo
