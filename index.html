@@ -1601,7 +1601,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error al cargar datos del JSON:', err);
     }
 
-// Auto-completar Modelo de Equipo y memoria independiente por Sonda
+// Auto-completar Modelo de Equipo y memoria independiente total por Sonda
 let sondaSeleccionadaAnterior = document.getElementById('sonda')?.value || '';
 
 const selectSonda = document.getElementById('sonda');
@@ -1613,9 +1613,9 @@ if (selectSonda) {
   selectSonda.addEventListener('change', () => {
     const sondaNueva = selectSonda.value;
 
-    // 1. GUARDAR: Empaquetar TODOS los campos actuales de la sonda anterior
+    // 1. GUARDAR: Empaquetar ABSOLUTAMENTE TODO de la sonda anterior
     if (sondaSeleccionadaAnterior && !sondaSeleccionadaAnterior.includes('Seleccionar')) {
-      const borradorActual = {
+      const borradorCompleto = {
         empresa: document.getElementById('empresa')?.value || '',
         proyecto: document.getElementById('proyecto')?.value || '',
         fecha: document.getElementById('fecha')?.value || '',
@@ -1628,51 +1628,122 @@ if (selectSonda) {
         largoProgramado: document.getElementById('largoProgramado')?.value || '',
         jefeFaena: document.getElementById('jefeFaena')?.value || '',
         asesorTecnico: document.getElementById('asesorTecnico')?.value || '',
-        observaciones: document.getElementById('observaciones')?.value || ''
+        casingMetros: document.getElementById('casingMetros')?.value || '',
+        casingDiametro: document.getElementById('casingDiametro')?.value || '',
+        observaciones: document.getElementById('observaciones')?.value || '',
+        
+        // Listas de supervisores y operadores
+        supervisores: Array.from(document.querySelectorAll('.input-supervisor')).map(i => i.value).filter(Boolean),
+        operadores: Array.from(document.querySelectorAll('.input-operador')).map(i => i.value).filter(Boolean),
+        
+        // Tramos de perforación
+        perforacion: Array.from(document.querySelectorAll('#bodyPerforacion tr')).map(tr => ({
+          desde: tr.querySelector('.perf-desde')?.value || '',
+          hasta: tr.querySelector('.perf-hasta')?.value || '',
+          avance: tr.querySelector('.perf-avance')?.value || '',
+          diametro: tr.querySelector('.perf-diametro')?.value || ''
+        })),
+        
+        // Detalle de actividades
+        actividades: Array.from(document.querySelectorAll('#bodyActividades tr')).map(tr => ({
+          desde: tr.querySelector('.act-desde')?.value || '',
+          hasta: tr.querySelector('.act-hasta')?.value || '',
+          codigo: tr.querySelector('.act-codigo')?.value || ''
+        }))
       };
-      localStorage.setItem(`borrador_sonda_${sondaSeleccionadaAnterior}`, JSON.stringify(borradorActual));
+      localStorage.setItem(`borrador_sonda_${sondaSeleccionadaAnterior}`, JSON.stringify(borradorCompleto));
     }
 
-    // 2. ACTUALIZAR EQUIPO: Ejecutar la función que ya tenías para el modelo
+    // 2. ACTUALIZAR EQUIPO
     if (typeof actualizarModeloEquipo === 'function') {
       actualizarModeloEquipo();
     }
 
-    // 3. CARGAR: Buscar si la NUEVA sonda tiene un borrador guardado previo
+    // 3. CARGAR: Restaurar todo para la NUEVA sonda
     const datosGuardados = localStorage.getItem(`borrador_sonda_${sondaNueva}`);
 
-    // Primero limpiamos los campos para evitar arrastrar datos
-    const idsCampos = ['empresa', 'proyecto', 'fecha', 'turno', 'modeloEquipo', 'pozo', 'recomendacion', 'inclinacion', 'azimut', 'largoProgramado', 'jefeFaena', 'asesorTecnico', 'observaciones'];
+    // Limpiar campos estáticos generales
+    const idsCampos = ['empresa', 'proyecto', 'fecha', 'turno', 'modeloEquipo', 'pozo', 'recomendacion', 'inclinacion', 'azimut', 'largoProgramado', 'jefeFaena', 'asesorTecnico', 'casingMetros', 'casingDiametro', 'observaciones'];
     idsCampos.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.value = '';
     });
 
-    // Si existen datos guardados para esta sonda, los restauramos en pantalla
+    // Limpiar contenedores dinámicos de supervisores/operadores
+    const supContainer = document.getElementById('supervisoresLista');
+    if (supContainer) supContainer.innerHTML = '';
+    const opContainer = document.getElementById('operadoresLista');
+    if (opContainer) opContainer.innerHTML = '';
+
     if (datosGuardados) {
       try {
         const parsed = JSON.parse(datosGuardados);
+        
+        // Rellenar campos estáticos
         idsCampos.forEach(id => {
           const el = document.getElementById(id);
           if (el && parsed[id] !== undefined) {
             el.value = parsed[id];
           }
         });
-        
-        // Si hay un pozo guardado, asegurarnos de seleccionarlo bien
+
+        // Pozo
         if (parsed.pozo && typeof agregarPozoManual === 'function') {
           agregarPozoManual(parsed.pozo);
         }
+
+        // Restaurar supervisores guardados
+        if (parsed.supervisores && Array.isArray(parsed.supervisores) && typeof agregarSupervisor === 'function') {
+          parsed.supervisores.forEach(sup => agregarSupervisor(sup));
+        }
+
+        // Restaurar operadores guardados
+        if (parsed.operadores && Array.isArray(parsed.operadores) && typeof agregarOperador === 'function') {
+          parsed.operadores.forEach(op => agregarOperador(op));
+        }
+
+        // Restaurar tabla de perforación
+        if (parsed.perforacion && Array.isArray(parsed.perforacion) && typeof agregarFilaPerforacion === 'function') {
+          const bodyPerf = document.getElementById('bodyPerforacion');
+          if (bodyPerf) bodyPerf.innerHTML = '';
+          parsed.perforacion.forEach(p => {
+            agregarFilaPerforacion();
+            const trs = bodyPerf.querySelectorAll('tr');
+            const ultimaTr = trs[trs.length - 1];
+            if (ultimaTr) {
+              if (ultimaTr.querySelector('.perf-desde')) ultimaTr.querySelector('.perf-desde').value = p.desde;
+              if (ultimaTr.querySelector('.perf-hasta')) ultimaTr.querySelector('.perf-hasta').value = p.hasta;
+              if (ultimaTr.querySelector('.perf-avance')) ultimaTr.querySelector('.perf-avance').value = p.avance;
+              if (ultimaTr.querySelector('.perf-diametro')) ultimaTr.querySelector('.perf-diametro').value = p.diametro;
+            }
+          });
+        }
+
+        // Restaurar tabla de actividades
+        if (parsed.actividades && Array.isArray(parsed.actividades) && typeof agregarFilaActividad === 'function') {
+          const bodyAct = document.getElementById('bodyActividades');
+          if (bodyAct) bodyAct.innerHTML = '';
+          parsed.actividades.forEach(a => {
+            agregarFilaActividad();
+            const trs = bodyAct.querySelectorAll('tr');
+            const ultimaTr = trs[trs.length - 1];
+            if (ultimaTr) {
+              if (ultimaTr.querySelector('.act-desde')) ultimaTr.querySelector('.act-desde').value = a.desde;
+              if (ultimaTr.querySelector('.act-hasta')) ultimaTr.querySelector('.act-hasta').value = a.hasta;
+              if (ultimaTr.querySelector('.act-codigo')) ultimaTr.querySelector('.act-codigo').value = a.codigo;
+            }
+          });
+        }
+
       } catch (e) {
-        console.error("Error al restaurar borrador de la sonda:", e);
+        console.error("Error al restaurar el borrador completo:", e);
       }
     }
 
-    // 4. Actualizar la referencia de la sonda actual
+    // 4. Actualizar referencia
     sondaSeleccionadaAnterior = sondaNueva;
   });
 }
-
 
     // Auto-completar Azimut, Inclinación, Recomendación y Largo al seleccionar un Pozo
     const selectPozo = document.getElementById('pozo');
