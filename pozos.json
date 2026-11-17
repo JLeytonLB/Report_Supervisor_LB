@@ -15,6 +15,14 @@
         "SCHRAMM-107": {
             "modelo": "SCHRAMM T685W",
             "metodo": "RC"
+        },
+        "LF-230-58": {
+            "modelo": "Boart LongYear",
+            "metodo": "DDH"
+        },
+        "LF-90-56": {
+            "modelo": "Boart LongYear",
+            "metodo": "DDH"
         }
     },
     "pozos": {
