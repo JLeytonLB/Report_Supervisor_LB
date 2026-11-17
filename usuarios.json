@@ -49,13 +49,6 @@
         "paginaDestino": "index.html"
     },
     {
-        "rut": "11111111-1",
-        "password": "1111",
-        "nombre": "Supervisor Turno",
-        "rol": "supervisor",
-        "paginaDestino": "index.html"
-    },
-    {
         "rut": "13785855-k",
         "password": "855k",
         "nombre": "Supervisor Turno",
