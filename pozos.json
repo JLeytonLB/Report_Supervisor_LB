@@ -15,6 +15,14 @@
         "SCHRAMM-107": {
             "modelo": "SCHRAMM T685W",
             "metodo": "RC"
+        },
+        "LF-230-58": {
+            "modelo": "Boart LongYear",
+            "metodo": "DDH"
+        },
+        "LF-90-56": {
+            "modelo": "Boart LongYear",
+            "metodo": "DDH"
         }
     },
     "pozos": {
@@ -23,12 +31,6 @@
             "inclinacion": -70.0,
             "recom": "LB2_GEOT26_REC_016",
             "largoProgramado": 250.0
-        },
-        "FR-597": {
-            "azimut": 230.0,
-            "inclinacion": -75.0,
-            "recom": "ROMLB2_IN26_REC_020",
-            "largoProgramado": 70.0
         },
         "ENR-014": {
             "azimut": 145.0,
@@ -39,7 +41,7 @@
         "ENR-017": {
             "azimut": 145.0,
             "inclinacion": -80.0,
-            "recom": "BR_ESP26_N_REC_004",
+            "recom": "BR_ESP26_N_REC_009",
             "largoProgramado": 500.0
         },
         "LR-1599": {
@@ -60,22 +62,22 @@
             "recom": "BR_ESP26_N_REC_006",
             "largoProgramado": 500.0
         },
-        "FR-598": {
-            "azimut": 300.0,
-            "inclinacion": -75.0,
-            "recom": "ROMLB2_IN26_REC_019",
-            "largoProgramado": 60.0
-        },
-        "ENR-013": {
+        "ENR-019": {
             "azimut": 145.0,
-            "inclinacion": -85.0,
-            "recom": "BR_ESP26_N_REC_003",
+            "inclinacion": -80.0,
+            "recom": "BR_ESP26_N_REC_011",
             "largoProgramado": 500.0
+        },
+        "FD-107": {
+            "azimut": 320.0,
+            "inclinacion": -75.0,
+            "recom": "LB2_GEOT26_REC_018",
+            "largoProgramado": 250.0
         },
         "ENR-018": {
             "azimut": 145.0,
             "inclinacion": -80.0,
-            "recom": "BR_ESP26_N_REC_009",
+            "recom": "BR_ESP26_N_REC_008",
             "largoProgramado": 500.0
         },
         "ENR-016": {
@@ -88,246 +90,10 @@
             "azimut": 330.0,
             "inclinacion": -75.0,
             "recom": "LB2_GEOT26_REC_014",
-            "largoProgramado": 250.0
+            "largoProgramado": 288.0
         }
     },
     "muestras_rc": {
-        "FR-597": [
-            {
-                "Muestra": 132481,
-                "Desde": 0.0,
-                "Hasta": 2.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132482,
-                "Desde": 2.0,
-                "Hasta": 4.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132483,
-                "Desde": 4.0,
-                "Hasta": 6.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132484,
-                "Desde": 6.0,
-                "Hasta": 8.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132485,
-                "Desde": 8.0,
-                "Hasta": 10.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132486,
-                "Desde": 10.0,
-                "Hasta": 12.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132487,
-                "Desde": 12.0,
-                "Hasta": 14.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132488,
-                "Desde": 14.0,
-                "Hasta": 16.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132489,
-                "Desde": 14.0,
-                "Hasta": 16.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132490,
-                "Desde": 16.0,
-                "Hasta": 18.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132491,
-                "Desde": 18.0,
-                "Hasta": 20.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132492,
-                "Desde": 20.0,
-                "Hasta": 22.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132493,
-                "Desde": 22.0,
-                "Hasta": 24.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132494,
-                "Desde": 24.0,
-                "Hasta": 26.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132495,
-                "Desde": 26.0,
-                "Hasta": 28.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132496,
-                "Desde": 28.0,
-                "Hasta": 30.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132497,
-                "Desde": 30.0,
-                "Hasta": 32.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132498,
-                "Desde": 32.0,
-                "Hasta": 34.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132499,
-                "Desde": 32.0,
-                "Hasta": 34.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 132500,
-                "Desde": 34.0,
-                "Hasta": 36.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 132501,
-                "Desde": 34.0,
-                "Hasta": 36.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 132502,
-                "Desde": 36.0,
-                "Hasta": 38.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132503,
-                "Desde": 38.0,
-                "Hasta": 40.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132504,
-                "Desde": 40.0,
-                "Hasta": 42.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132505,
-                "Desde": 42.0,
-                "Hasta": 44.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132506,
-                "Desde": 44.0,
-                "Hasta": 46.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132507,
-                "Desde": 46.0,
-                "Hasta": 48.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132508,
-                "Desde": 48.0,
-                "Hasta": 50.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132509,
-                "Desde": 50.0,
-                "Hasta": 52.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132510,
-                "Desde": 52.0,
-                "Hasta": 54.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132511,
-                "Desde": 52.0,
-                "Hasta": 54.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132512,
-                "Desde": 54.0,
-                "Hasta": 56.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132513,
-                "Desde": 56.0,
-                "Hasta": 58.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132514,
-                "Desde": 58.0,
-                "Hasta": 60.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132515,
-                "Desde": 60.0,
-                "Hasta": 62.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132516,
-                "Desde": 62.0,
-                "Hasta": 64.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132517,
-                "Desde": 64.0,
-                "Hasta": 66.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132518,
-                "Desde": 66.0,
-                "Hasta": 68.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132519,
-                "Desde": 68.0,
-                "Hasta": 70.0,
-                "QAQC": ""
-            }
-        ],
         "ENR-014": [
             {
                 "Muestra": 132161,
@@ -844,1206 +610,6 @@
                 "Desde": 148.0,
                 "Hasta": 150.0,
                 "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 132247,
-                "Desde": 150.0,
-                "Hasta": 152.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132248,
-                "Desde": 152.0,
-                "Hasta": 154.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132249,
-                "Desde": 154.0,
-                "Hasta": 156.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132250,
-                "Desde": 156.0,
-                "Hasta": 158.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132251,
-                "Desde": 158.0,
-                "Hasta": 160.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132252,
-                "Desde": 160.0,
-                "Hasta": 162.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132253,
-                "Desde": 162.0,
-                "Hasta": 164.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132254,
-                "Desde": 164.0,
-                "Hasta": 166.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132255,
-                "Desde": 164.0,
-                "Hasta": 166.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 132256,
-                "Desde": 166.0,
-                "Hasta": 168.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132257,
-                "Desde": 166.0,
-                "Hasta": 168.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132258,
-                "Desde": 168.0,
-                "Hasta": 170.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132259,
-                "Desde": 170.0,
-                "Hasta": 172.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132260,
-                "Desde": 172.0,
-                "Hasta": 174.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132261,
-                "Desde": 174.0,
-                "Hasta": 176.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132262,
-                "Desde": 176.0,
-                "Hasta": 178.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132263,
-                "Desde": 178.0,
-                "Hasta": 180.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132264,
-                "Desde": 180.0,
-                "Hasta": 182.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132265,
-                "Desde": 182.0,
-                "Hasta": 184.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132266,
-                "Desde": 184.0,
-                "Hasta": 186.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132267,
-                "Desde": 186.0,
-                "Hasta": 188.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 132268,
-                "Desde": 186.0,
-                "Hasta": 188.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 132269,
-                "Desde": 188.0,
-                "Hasta": 190.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132270,
-                "Desde": 190.0,
-                "Hasta": 192.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132271,
-                "Desde": 192.0,
-                "Hasta": 194.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132272,
-                "Desde": 194.0,
-                "Hasta": 196.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132273,
-                "Desde": 196.0,
-                "Hasta": 198.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132274,
-                "Desde": 198.0,
-                "Hasta": 200.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132275,
-                "Desde": 200.0,
-                "Hasta": 202.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132276,
-                "Desde": 202.0,
-                "Hasta": 204.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132277,
-                "Desde": 204.0,
-                "Hasta": 206.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132278,
-                "Desde": 204.0,
-                "Hasta": 206.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132279,
-                "Desde": 206.0,
-                "Hasta": 208.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132280,
-                "Desde": 208.0,
-                "Hasta": 210.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132281,
-                "Desde": 210.0,
-                "Hasta": 212.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132282,
-                "Desde": 212.0,
-                "Hasta": 214.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132283,
-                "Desde": 214.0,
-                "Hasta": 216.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132284,
-                "Desde": 216.0,
-                "Hasta": 218.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132285,
-                "Desde": 216.0,
-                "Hasta": 218.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 132286,
-                "Desde": 218.0,
-                "Hasta": 220.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132287,
-                "Desde": 220.0,
-                "Hasta": 222.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132288,
-                "Desde": 222.0,
-                "Hasta": 224.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132289,
-                "Desde": 224.0,
-                "Hasta": 226.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 132290,
-                "Desde": 224.0,
-                "Hasta": 226.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 132291,
-                "Desde": 226.0,
-                "Hasta": 228.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132292,
-                "Desde": 228.0,
-                "Hasta": 230.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132293,
-                "Desde": 230.0,
-                "Hasta": 232.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132294,
-                "Desde": 232.0,
-                "Hasta": 234.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132295,
-                "Desde": 234.0,
-                "Hasta": 236.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132296,
-                "Desde": 236.0,
-                "Hasta": 238.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132297,
-                "Desde": 238.0,
-                "Hasta": 240.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132298,
-                "Desde": 240.0,
-                "Hasta": 242.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132299,
-                "Desde": 242.0,
-                "Hasta": 244.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132300,
-                "Desde": 242.0,
-                "Hasta": 244.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132301,
-                "Desde": 244.0,
-                "Hasta": 246.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132302,
-                "Desde": 246.0,
-                "Hasta": 248.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132303,
-                "Desde": 248.0,
-                "Hasta": 250.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132304,
-                "Desde": 250.0,
-                "Hasta": 252.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132305,
-                "Desde": 252.0,
-                "Hasta": 254.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132306,
-                "Desde": 254.0,
-                "Hasta": 256.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132307,
-                "Desde": 256.0,
-                "Hasta": 258.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132308,
-                "Desde": 258.0,
-                "Hasta": 260.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132309,
-                "Desde": 260.0,
-                "Hasta": 262.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132310,
-                "Desde": 262.0,
-                "Hasta": 264.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 132311,
-                "Desde": 262.0,
-                "Hasta": 264.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 132312,
-                "Desde": 264.0,
-                "Hasta": 266.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132313,
-                "Desde": 266.0,
-                "Hasta": 268.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132314,
-                "Desde": 268.0,
-                "Hasta": 270.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132315,
-                "Desde": 268.0,
-                "Hasta": 270.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 132316,
-                "Desde": 270.0,
-                "Hasta": 272.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132317,
-                "Desde": 272.0,
-                "Hasta": 274.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132318,
-                "Desde": 274.0,
-                "Hasta": 276.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132319,
-                "Desde": 276.0,
-                "Hasta": 278.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132320,
-                "Desde": 278.0,
-                "Hasta": 280.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132321,
-                "Desde": 280.0,
-                "Hasta": 282.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132322,
-                "Desde": 280.0,
-                "Hasta": 282.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132323,
-                "Desde": 282.0,
-                "Hasta": 284.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132324,
-                "Desde": 284.0,
-                "Hasta": 286.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132325,
-                "Desde": 286.0,
-                "Hasta": 288.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132326,
-                "Desde": 288.0,
-                "Hasta": 290.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132327,
-                "Desde": 290.0,
-                "Hasta": 292.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132328,
-                "Desde": 292.0,
-                "Hasta": 294.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132329,
-                "Desde": 294.0,
-                "Hasta": 296.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132330,
-                "Desde": 296.0,
-                "Hasta": 298.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 132331,
-                "Desde": 298.0,
-                "Hasta": 300.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130015,
-                "Desde": 300.0,
-                "Hasta": 302.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130016,
-                "Desde": 302.0,
-                "Hasta": 304.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 130017,
-                "Desde": 302.0,
-                "Hasta": 304.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 130018,
-                "Desde": 304.0,
-                "Hasta": 306.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130019,
-                "Desde": 306.0,
-                "Hasta": 308.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130020,
-                "Desde": 308.0,
-                "Hasta": 310.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130021,
-                "Desde": 310.0,
-                "Hasta": 312.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130022,
-                "Desde": 312.0,
-                "Hasta": 314.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130023,
-                "Desde": 314.0,
-                "Hasta": 316.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130024,
-                "Desde": 316.0,
-                "Hasta": 318.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130025,
-                "Desde": 318.0,
-                "Hasta": 320.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130026,
-                "Desde": 320.0,
-                "Hasta": 322.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130027,
-                "Desde": 320.0,
-                "Hasta": 322.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 130028,
-                "Desde": 322.0,
-                "Hasta": 324.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130029,
-                "Desde": 324.0,
-                "Hasta": 326.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130030,
-                "Desde": 326.0,
-                "Hasta": 328.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130031,
-                "Desde": 328.0,
-                "Hasta": 330.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130032,
-                "Desde": 330.0,
-                "Hasta": 332.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130033,
-                "Desde": 332.0,
-                "Hasta": 334.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130034,
-                "Desde": 334.0,
-                "Hasta": 336.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130035,
-                "Desde": 336.0,
-                "Hasta": 338.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130036,
-                "Desde": 338.0,
-                "Hasta": 340.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130037,
-                "Desde": 340.0,
-                "Hasta": 342.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 130038,
-                "Desde": 340.0,
-                "Hasta": 342.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 130039,
-                "Desde": 342.0,
-                "Hasta": 344.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130040,
-                "Desde": 344.0,
-                "Hasta": 346.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130041,
-                "Desde": 346.0,
-                "Hasta": 348.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130042,
-                "Desde": 348.0,
-                "Hasta": 350.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130043,
-                "Desde": 350.0,
-                "Hasta": 352.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130044,
-                "Desde": 350.0,
-                "Hasta": 352.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 130045,
-                "Desde": 352.0,
-                "Hasta": 354.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130046,
-                "Desde": 354.0,
-                "Hasta": 356.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130047,
-                "Desde": 356.0,
-                "Hasta": 358.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130048,
-                "Desde": 358.0,
-                "Hasta": 360.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130049,
-                "Desde": 358.0,
-                "Hasta": 360.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 130050,
-                "Desde": 360.0,
-                "Hasta": 362.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130051,
-                "Desde": 362.0,
-                "Hasta": 364.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130052,
-                "Desde": 364.0,
-                "Hasta": 366.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130053,
-                "Desde": 366.0,
-                "Hasta": 368.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130054,
-                "Desde": 368.0,
-                "Hasta": 370.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130055,
-                "Desde": 370.0,
-                "Hasta": 372.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130056,
-                "Desde": 372.0,
-                "Hasta": 374.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130057,
-                "Desde": 374.0,
-                "Hasta": 376.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130058,
-                "Desde": 376.0,
-                "Hasta": 378.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130059,
-                "Desde": 378.0,
-                "Hasta": 380.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 130060,
-                "Desde": 378.0,
-                "Hasta": 380.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 130061,
-                "Desde": 380.0,
-                "Hasta": 382.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130062,
-                "Desde": 382.0,
-                "Hasta": 384.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130063,
-                "Desde": 384.0,
-                "Hasta": 386.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130064,
-                "Desde": 386.0,
-                "Hasta": 388.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130065,
-                "Desde": 388.0,
-                "Hasta": 390.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130066,
-                "Desde": 390.0,
-                "Hasta": 392.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130067,
-                "Desde": 392.0,
-                "Hasta": 394.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130068,
-                "Desde": 394.0,
-                "Hasta": 396.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130069,
-                "Desde": 396.0,
-                "Hasta": 398.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130070,
-                "Desde": 396.0,
-                "Hasta": 398.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 130071,
-                "Desde": 398.0,
-                "Hasta": 400.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130072,
-                "Desde": 400.0,
-                "Hasta": 402.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130073,
-                "Desde": 402.0,
-                "Hasta": 404.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130074,
-                "Desde": 402.0,
-                "Hasta": 404.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 130075,
-                "Desde": 404.0,
-                "Hasta": 406.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130076,
-                "Desde": 406.0,
-                "Hasta": 408.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130077,
-                "Desde": 408.0,
-                "Hasta": 410.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130078,
-                "Desde": 410.0,
-                "Hasta": 412.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130079,
-                "Desde": 412.0,
-                "Hasta": 414.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130080,
-                "Desde": 414.0,
-                "Hasta": 416.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130081,
-                "Desde": 416.0,
-                "Hasta": 418.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 130082,
-                "Desde": 416.0,
-                "Hasta": 418.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 130083,
-                "Desde": 418.0,
-                "Hasta": 420.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130084,
-                "Desde": 420.0,
-                "Hasta": 422.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130085,
-                "Desde": 422.0,
-                "Hasta": 424.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130086,
-                "Desde": 424.0,
-                "Hasta": 426.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130087,
-                "Desde": 426.0,
-                "Hasta": 428.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130088,
-                "Desde": 428.0,
-                "Hasta": 430.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130089,
-                "Desde": 430.0,
-                "Hasta": 432.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130090,
-                "Desde": 432.0,
-                "Hasta": 434.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130091,
-                "Desde": 434.0,
-                "Hasta": 436.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130092,
-                "Desde": 434.0,
-                "Hasta": 436.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 130093,
-                "Desde": 436.0,
-                "Hasta": 438.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130094,
-                "Desde": 438.0,
-                "Hasta": 440.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130095,
-                "Desde": 440.0,
-                "Hasta": 442.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130096,
-                "Desde": 442.0,
-                "Hasta": 444.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130097,
-                "Desde": 444.0,
-                "Hasta": 446.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130098,
-                "Desde": 446.0,
-                "Hasta": 448.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130099,
-                "Desde": 448.0,
-                "Hasta": 450.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130100,
-                "Desde": 450.0,
-                "Hasta": 452.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130101,
-                "Desde": 452.0,
-                "Hasta": 454.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130102,
-                "Desde": 454.0,
-                "Hasta": 456.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 130103,
-                "Desde": 454.0,
-                "Hasta": 456.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 130104,
-                "Desde": 456.0,
-                "Hasta": 458.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130105,
-                "Desde": 456.0,
-                "Hasta": 458.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 130106,
-                "Desde": 458.0,
-                "Hasta": 460.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130107,
-                "Desde": 460.0,
-                "Hasta": 462.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130108,
-                "Desde": 462.0,
-                "Hasta": 464.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130109,
-                "Desde": 464.0,
-                "Hasta": 466.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130110,
-                "Desde": 466.0,
-                "Hasta": 468.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130111,
-                "Desde": 468.0,
-                "Hasta": 470.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130112,
-                "Desde": 470.0,
-                "Hasta": 472.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130113,
-                "Desde": 472.0,
-                "Hasta": 474.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130114,
-                "Desde": 472.0,
-                "Hasta": 474.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 130115,
-                "Desde": 474.0,
-                "Hasta": 476.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130116,
-                "Desde": 476.0,
-                "Hasta": 478.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130117,
-                "Desde": 478.0,
-                "Hasta": 480.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130118,
-                "Desde": 480.0,
-                "Hasta": 482.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130119,
-                "Desde": 482.0,
-                "Hasta": 484.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130120,
-                "Desde": 484.0,
-                "Hasta": 486.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130121,
-                "Desde": 486.0,
-                "Hasta": 488.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130122,
-                "Desde": 488.0,
-                "Hasta": 490.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130123,
-                "Desde": 490.0,
-                "Hasta": 492.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130124,
-                "Desde": 492.0,
-                "Hasta": 494.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 130125,
-                "Desde": 492.0,
-                "Hasta": 494.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 130126,
-                "Desde": 494.0,
-                "Hasta": 496.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130127,
-                "Desde": 496.0,
-                "Hasta": 498.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 130128,
-                "Desde": 498.0,
-                "Hasta": 500.0,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131263,
-                "Desde": 498.0,
-                "Hasta": 500.0,
-                "QAQC": "Duplicado#10"
             }
         ],
         "ENR-017": [
@@ -7200,1898 +5766,1722 @@
                 "QAQC": ""
             }
         ],
-        "FR-598": [
+        "ENR-019": [
             {
-                "Muestra": 132520,
+                "Muestra": 136287,
                 "Desde": 0.0,
                 "Hasta": 2.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132521,
+                "Muestra": 136288,
                 "Desde": 2.0,
                 "Hasta": 4.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132522,
+                "Muestra": 136289,
                 "Desde": 4.0,
                 "Hasta": 6.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132523,
-                "Desde": 4.0,
-                "Hasta": 6.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132524,
+                "Muestra": 136290,
                 "Desde": 6.0,
                 "Hasta": 8.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132525,
+                "Muestra": 136291,
                 "Desde": 8.0,
                 "Hasta": 10.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132526,
+                "Muestra": 136292,
                 "Desde": 10.0,
                 "Hasta": 12.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132527,
+                "Muestra": 136293,
+                "Desde": 10.0,
+                "Hasta": 12.0,
+                "QAQC": "BLK Grueso"
+            },
+            {
+                "Muestra": 136294,
                 "Desde": 12.0,
                 "Hasta": 14.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132528,
+                "Muestra": 136295,
                 "Desde": 14.0,
                 "Hasta": 16.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132529,
+                "Muestra": 136296,
+                "Desde": 14.0,
+                "Hasta": 16.0,
+                "QAQC": "Duplicado#10"
+            },
+            {
+                "Muestra": 136297,
                 "Desde": 16.0,
                 "Hasta": 18.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132530,
+                "Muestra": 136298,
                 "Desde": 18.0,
                 "Hasta": 20.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132531,
+                "Muestra": 136299,
                 "Desde": 20.0,
                 "Hasta": 22.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132532,
+                "Muestra": 136300,
                 "Desde": 22.0,
                 "Hasta": 24.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132533,
+                "Muestra": 136301,
                 "Desde": 24.0,
                 "Hasta": 26.0,
-                "QAQC": "LLEVA DUP"
+                "QAQC": ""
             },
             {
-                "Muestra": 132534,
-                "Desde": 24.0,
-                "Hasta": 26.0,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 132535,
+                "Muestra": 136302,
                 "Desde": 26.0,
                 "Hasta": 28.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132536,
+                "Muestra": 136303,
                 "Desde": 28.0,
                 "Hasta": 30.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132537,
+                "Muestra": 136304,
                 "Desde": 30.0,
                 "Hasta": 32.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132538,
-                "Desde": 30.0,
-                "Hasta": 32.0,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 132539,
+                "Muestra": 136305,
                 "Desde": 32.0,
                 "Hasta": 34.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132540,
+                "Muestra": 136306,
                 "Desde": 34.0,
                 "Hasta": 36.0,
-                "QAQC": ""
+                "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 132541,
+                "Muestra": 136307,
+                "Desde": 34.0,
+                "Hasta": 36.0,
+                "QAQC": "Duplicado"
+            },
+            {
+                "Muestra": 136308,
                 "Desde": 36.0,
                 "Hasta": 38.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132542,
+                "Muestra": 136309,
                 "Desde": 38.0,
                 "Hasta": 40.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132543,
+                "Muestra": 136310,
                 "Desde": 40.0,
                 "Hasta": 42.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132544,
+                "Muestra": 136311,
                 "Desde": 42.0,
                 "Hasta": 44.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 132545,
-                "Desde": 42.0,
-                "Hasta": 44.0,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 132546,
+                "Muestra": 136312,
                 "Desde": 44.0,
                 "Hasta": 46.0,
                 "QAQC": ""
-            }
-        ],
-        "ENR-013": [
+            },
             {
-                "Muestra": 129545,
-                "Desde": 0,
-                "Hasta": 2,
+                "Muestra": 136313,
+                "Desde": 46.0,
+                "Hasta": 48.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129546,
-                "Desde": 0,
-                "Hasta": 2,
+                "Muestra": 136314,
+                "Desde": 48.0,
+                "Hasta": 50.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 136315,
+                "Desde": 50.0,
+                "Hasta": 52.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 136316,
+                "Desde": 52.0,
+                "Hasta": 54.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 136317,
+                "Desde": 52.0,
+                "Hasta": 54.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 129547,
-                "Desde": 2,
-                "Hasta": 4,
+                "Muestra": 136318,
+                "Desde": 54.0,
+                "Hasta": 56.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129548,
-                "Desde": 4,
-                "Hasta": 6,
+                "Muestra": 136319,
+                "Desde": 56.0,
+                "Hasta": 58.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129549,
-                "Desde": 4,
-                "Hasta": 6,
+                "Muestra": 136320,
+                "Desde": 58.0,
+                "Hasta": 60.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 136321,
+                "Desde": 58.0,
+                "Hasta": 60.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 129550,
-                "Desde": 6,
-                "Hasta": 8,
+                "Muestra": 136322,
+                "Desde": 60.0,
+                "Hasta": 62.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129551,
-                "Desde": 8,
-                "Hasta": 10,
+                "Muestra": 136323,
+                "Desde": 62.0,
+                "Hasta": 64.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129552,
-                "Desde": 10,
-                "Hasta": 12,
+                "Muestra": 136324,
+                "Desde": 64.0,
+                "Hasta": 66.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129553,
-                "Desde": 12,
-                "Hasta": 14,
+                "Muestra": 136325,
+                "Desde": 66.0,
+                "Hasta": 68.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129554,
-                "Desde": 14,
-                "Hasta": 16,
+                "Muestra": 136326,
+                "Desde": 68.0,
+                "Hasta": 70.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129555,
-                "Desde": 16,
-                "Hasta": 18,
+                "Muestra": 136327,
+                "Desde": 70.0,
+                "Hasta": 72.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129556,
-                "Desde": 18,
-                "Hasta": 20,
+                "Muestra": 136328,
+                "Desde": 72.0,
+                "Hasta": 74.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 129557,
-                "Desde": 18,
-                "Hasta": 20,
+                "Muestra": 136329,
+                "Desde": 72.0,
+                "Hasta": 74.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 129558,
-                "Desde": 20,
-                "Hasta": 22,
+                "Muestra": 136330,
+                "Desde": 74.0,
+                "Hasta": 76.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129559,
-                "Desde": 22,
-                "Hasta": 24,
+                "Muestra": 136331,
+                "Desde": 76.0,
+                "Hasta": 78.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129560,
-                "Desde": 24,
-                "Hasta": 26,
+                "Muestra": 136332,
+                "Desde": 78.0,
+                "Hasta": 80.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129561,
-                "Desde": 26,
-                "Hasta": 28,
+                "Muestra": 136333,
+                "Desde": 80.0,
+                "Hasta": 82.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129562,
-                "Desde": 28,
-                "Hasta": 30,
+                "Muestra": 136334,
+                "Desde": 82.0,
+                "Hasta": 84.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129563,
-                "Desde": 30,
-                "Hasta": 32,
+                "Muestra": 136335,
+                "Desde": 84.0,
+                "Hasta": 86.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129564,
-                "Desde": 32,
-                "Hasta": 34,
+                "Muestra": 136336,
+                "Desde": 86.0,
+                "Hasta": 88.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129565,
-                "Desde": 34,
-                "Hasta": 36,
+                "Muestra": 136337,
+                "Desde": 88.0,
+                "Hasta": 90.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129566,
-                "Desde": 36,
-                "Hasta": 38,
+                "Muestra": 136338,
+                "Desde": 90.0,
+                "Hasta": 92.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129567,
-                "Desde": 38,
-                "Hasta": 40,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 129568,
-                "Desde": 38,
-                "Hasta": 40,
+                "Muestra": 136339,
+                "Desde": 90.0,
+                "Hasta": 92.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 129569,
-                "Desde": 40,
-                "Hasta": 42,
+                "Muestra": 136340,
+                "Desde": 92.0,
+                "Hasta": 94.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129570,
-                "Desde": 42,
-                "Hasta": 44,
+                "Muestra": 136341,
+                "Desde": 94.0,
+                "Hasta": 96.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129571,
-                "Desde": 44,
-                "Hasta": 46,
+                "Muestra": 136342,
+                "Desde": 96.0,
+                "Hasta": 98.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129572,
-                "Desde": 46,
-                "Hasta": 48,
+                "Muestra": 136343,
+                "Desde": 98.0,
+                "Hasta": 100.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129573,
-                "Desde": 48,
-                "Hasta": 50,
+                "Muestra": 136344,
+                "Desde": 100.0,
+                "Hasta": 102.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129574,
-                "Desde": 50,
-                "Hasta": 52,
+                "Muestra": 136345,
+                "Desde": 102.0,
+                "Hasta": 104.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129575,
-                "Desde": 52,
-                "Hasta": 54,
+                "Muestra": 136346,
+                "Desde": 104.0,
+                "Hasta": 106.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129576,
-                "Desde": 52,
-                "Hasta": 54,
+                "Muestra": 136347,
+                "Desde": 106.0,
+                "Hasta": 108.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 136348,
+                "Desde": 106.0,
+                "Hasta": 108.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 129577,
-                "Desde": 54,
-                "Hasta": 56,
+                "Muestra": 136349,
+                "Desde": 108.0,
+                "Hasta": 110.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129578,
-                "Desde": 56,
-                "Hasta": 58,
+                "Muestra": 136350,
+                "Desde": 110.0,
+                "Hasta": 112.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 129579,
-                "Desde": 56,
-                "Hasta": 58,
+                "Muestra": 136351,
+                "Desde": 110.0,
+                "Hasta": 112.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 129580,
-                "Desde": 58,
-                "Hasta": 60,
+                "Muestra": 136352,
+                "Desde": 112.0,
+                "Hasta": 114.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129581,
-                "Desde": 60,
-                "Hasta": 62,
+                "Muestra": 136353,
+                "Desde": 114.0,
+                "Hasta": 116.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129582,
-                "Desde": 62,
-                "Hasta": 64,
+                "Muestra": 136354,
+                "Desde": 116.0,
+                "Hasta": 118.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129583,
-                "Desde": 64,
-                "Hasta": 66,
+                "Muestra": 136355,
+                "Desde": 118.0,
+                "Hasta": 120.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129584,
-                "Desde": 66,
-                "Hasta": 68,
+                "Muestra": 136356,
+                "Desde": 120.0,
+                "Hasta": 122.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129585,
-                "Desde": 68,
-                "Hasta": 70,
+                "Muestra": 136357,
+                "Desde": 122.0,
+                "Hasta": 124.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129586,
-                "Desde": 70,
-                "Hasta": 72,
+                "Muestra": 136358,
+                "Desde": 124.0,
+                "Hasta": 126.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129587,
-                "Desde": 72,
-                "Hasta": 74,
+                "Muestra": 136359,
+                "Desde": 126.0,
+                "Hasta": 128.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129588,
-                "Desde": 74,
-                "Hasta": 76,
+                "Muestra": 136360,
+                "Desde": 128.0,
+                "Hasta": 130.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129589,
-                "Desde": 76,
-                "Hasta": 78,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 129590,
-                "Desde": 76,
-                "Hasta": 78,
+                "Muestra": 136361,
+                "Desde": 128.0,
+                "Hasta": 130.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 129591,
-                "Desde": 78,
-                "Hasta": 80,
+                "Muestra": 136362,
+                "Desde": 130.0,
+                "Hasta": 132.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129592,
-                "Desde": 80,
-                "Hasta": 82,
+                "Muestra": 136363,
+                "Desde": 132.0,
+                "Hasta": 134.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129593,
-                "Desde": 82,
-                "Hasta": 84,
+                "Muestra": 136364,
+                "Desde": 134.0,
+                "Hasta": 136.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129594,
-                "Desde": 84,
-                "Hasta": 86,
+                "Muestra": 136365,
+                "Desde": 136.0,
+                "Hasta": 138.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129595,
-                "Desde": 86,
-                "Hasta": 88,
+                "Muestra": 136366,
+                "Desde": 138.0,
+                "Hasta": 140.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129596,
-                "Desde": 88,
-                "Hasta": 90,
+                "Muestra": 136367,
+                "Desde": 140.0,
+                "Hasta": 142.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129597,
-                "Desde": 90,
-                "Hasta": 92,
+                "Muestra": 136368,
+                "Desde": 142.0,
+                "Hasta": 144.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129598,
-                "Desde": 92,
-                "Hasta": 94,
+                "Muestra": 136369,
+                "Desde": 144.0,
+                "Hasta": 146.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129599,
-                "Desde": 94,
-                "Hasta": 96,
+                "Muestra": 136370,
+                "Desde": 146.0,
+                "Hasta": 148.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 136371,
+                "Desde": 148.0,
+                "Hasta": 150.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 129600,
-                "Desde": 94,
-                "Hasta": 96,
+                "Muestra": 136372,
+                "Desde": 148.0,
+                "Hasta": 150.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 129601,
-                "Desde": 96,
-                "Hasta": 98,
+                "Muestra": 132247,
+                "Desde": 150.0,
+                "Hasta": 152.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 129602,
-                "Desde": 98,
-                "Hasta": 100,
+                "Muestra": 132248,
+                "Desde": 152.0,
+                "Hasta": 154.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126113,
-                "Desde": 100,
-                "Hasta": 102,
+                "Muestra": 132249,
+                "Desde": 154.0,
+                "Hasta": 156.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126114,
-                "Desde": 100,
-                "Hasta": 102,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 126115,
-                "Desde": 102,
-                "Hasta": 104,
+                "Muestra": 132250,
+                "Desde": 156.0,
+                "Hasta": 158.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126116,
-                "Desde": 104,
-                "Hasta": 106,
+                "Muestra": 132251,
+                "Desde": 158.0,
+                "Hasta": 160.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126117,
-                "Desde": 106,
-                "Hasta": 108,
+                "Muestra": 132252,
+                "Desde": 160.0,
+                "Hasta": 162.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126118,
-                "Desde": 108,
-                "Hasta": 110,
+                "Muestra": 132253,
+                "Desde": 162.0,
+                "Hasta": 164.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126119,
-                "Desde": 110,
-                "Hasta": 112,
+                "Muestra": 132254,
+                "Desde": 164.0,
+                "Hasta": 166.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126120,
-                "Desde": 112,
-                "Hasta": 114,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126121,
-                "Desde": 114,
-                "Hasta": 116,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126122,
-                "Desde": 116,
-                "Hasta": 118,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 126123,
-                "Desde": 116,
-                "Hasta": 118,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 126124,
-                "Desde": 118,
-                "Hasta": 120,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126125,
-                "Desde": 120,
-                "Hasta": 122,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126126,
-                "Desde": 122,
-                "Hasta": 124,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126127,
-                "Desde": 124,
-                "Hasta": 126,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126128,
-                "Desde": 126,
-                "Hasta": 128,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126129,
-                "Desde": 128,
-                "Hasta": 130,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126130,
-                "Desde": 130,
-                "Hasta": 132,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126131,
-                "Desde": 130,
-                "Hasta": 132,
+                "Muestra": 132255,
+                "Desde": 164.0,
+                "Hasta": 166.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 126132,
-                "Desde": 132,
-                "Hasta": 134,
+                "Muestra": 132256,
+                "Desde": 166.0,
+                "Hasta": 168.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126133,
-                "Desde": 134,
-                "Hasta": 136,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 126134,
-                "Desde": 134,
-                "Hasta": 136,
+                "Muestra": 132257,
+                "Desde": 166.0,
+                "Hasta": 168.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 126135,
-                "Desde": 136,
-                "Hasta": 138,
+                "Muestra": 132258,
+                "Desde": 168.0,
+                "Hasta": 170.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126136,
-                "Desde": 138,
-                "Hasta": 140,
+                "Muestra": 132259,
+                "Desde": 170.0,
+                "Hasta": 172.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126137,
-                "Desde": 140,
-                "Hasta": 142,
+                "Muestra": 132260,
+                "Desde": 172.0,
+                "Hasta": 174.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126138,
-                "Desde": 142,
-                "Hasta": 144,
+                "Muestra": 132261,
+                "Desde": 174.0,
+                "Hasta": 176.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126139,
-                "Desde": 144,
-                "Hasta": 146,
+                "Muestra": 132262,
+                "Desde": 176.0,
+                "Hasta": 178.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126140,
-                "Desde": 146,
-                "Hasta": 148,
+                "Muestra": 132263,
+                "Desde": 178.0,
+                "Hasta": 180.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132264,
+                "Desde": 180.0,
+                "Hasta": 182.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132265,
+                "Desde": 182.0,
+                "Hasta": 184.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132266,
+                "Desde": 184.0,
+                "Hasta": 186.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132267,
+                "Desde": 186.0,
+                "Hasta": 188.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 126141,
-                "Desde": 146,
-                "Hasta": 148,
+                "Muestra": 132268,
+                "Desde": 186.0,
+                "Hasta": 188.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 126142,
-                "Desde": 148,
-                "Hasta": 150,
+                "Muestra": 132269,
+                "Desde": 188.0,
+                "Hasta": 190.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126143,
-                "Desde": 150,
-                "Hasta": 152,
+                "Muestra": 132270,
+                "Desde": 190.0,
+                "Hasta": 192.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126144,
-                "Desde": 152,
-                "Hasta": 154,
+                "Muestra": 132271,
+                "Desde": 192.0,
+                "Hasta": 194.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126145,
-                "Desde": 154,
-                "Hasta": 156,
+                "Muestra": 132272,
+                "Desde": 194.0,
+                "Hasta": 196.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126146,
-                "Desde": 156,
-                "Hasta": 158,
+                "Muestra": 132273,
+                "Desde": 196.0,
+                "Hasta": 198.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126147,
-                "Desde": 158,
-                "Hasta": 160,
+                "Muestra": 132274,
+                "Desde": 198.0,
+                "Hasta": 200.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126148,
-                "Desde": 160,
-                "Hasta": 162,
+                "Muestra": 132275,
+                "Desde": 200.0,
+                "Hasta": 202.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126149,
-                "Desde": 160,
-                "Hasta": 162,
+                "Muestra": 132276,
+                "Desde": 202.0,
+                "Hasta": 204.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132277,
+                "Desde": 204.0,
+                "Hasta": 206.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132278,
+                "Desde": 204.0,
+                "Hasta": 206.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 126150,
-                "Desde": 162,
-                "Hasta": 164,
+                "Muestra": 132279,
+                "Desde": 206.0,
+                "Hasta": 208.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126151,
-                "Desde": 164,
-                "Hasta": 166,
+                "Muestra": 132280,
+                "Desde": 208.0,
+                "Hasta": 210.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126152,
-                "Desde": 166,
-                "Hasta": 168,
+                "Muestra": 132281,
+                "Desde": 210.0,
+                "Hasta": 212.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126153,
-                "Desde": 168,
-                "Hasta": 170,
+                "Muestra": 132282,
+                "Desde": 212.0,
+                "Hasta": 214.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126154,
-                "Desde": 170,
-                "Hasta": 172,
+                "Muestra": 132283,
+                "Desde": 214.0,
+                "Hasta": 216.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126155,
-                "Desde": 170,
-                "Hasta": 172,
+                "Muestra": 132284,
+                "Desde": 216.0,
+                "Hasta": 218.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132285,
+                "Desde": 216.0,
+                "Hasta": 218.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 126156,
-                "Desde": 172,
-                "Hasta": 174,
+                "Muestra": 132286,
+                "Desde": 218.0,
+                "Hasta": 220.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126157,
-                "Desde": 174,
-                "Hasta": 176,
+                "Muestra": 132287,
+                "Desde": 220.0,
+                "Hasta": 222.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126158,
-                "Desde": 176,
-                "Hasta": 178,
+                "Muestra": 132288,
+                "Desde": 222.0,
+                "Hasta": 224.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132289,
+                "Desde": 224.0,
+                "Hasta": 226.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 126159,
-                "Desde": 176,
-                "Hasta": 178,
+                "Muestra": 132290,
+                "Desde": 224.0,
+                "Hasta": 226.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 126160,
-                "Desde": 178,
-                "Hasta": 180,
+                "Muestra": 132291,
+                "Desde": 226.0,
+                "Hasta": 228.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126161,
-                "Desde": 180,
-                "Hasta": 182,
+                "Muestra": 132292,
+                "Desde": 228.0,
+                "Hasta": 230.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126162,
-                "Desde": 182,
-                "Hasta": 184,
+                "Muestra": 132293,
+                "Desde": 230.0,
+                "Hasta": 232.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126163,
-                "Desde": 184,
-                "Hasta": 186,
+                "Muestra": 132294,
+                "Desde": 232.0,
+                "Hasta": 234.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126164,
-                "Desde": 186,
-                "Hasta": 188,
+                "Muestra": 132295,
+                "Desde": 234.0,
+                "Hasta": 236.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126165,
-                "Desde": 188,
-                "Hasta": 190,
+                "Muestra": 132296,
+                "Desde": 236.0,
+                "Hasta": 238.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126166,
-                "Desde": 190,
-                "Hasta": 192,
+                "Muestra": 132297,
+                "Desde": 238.0,
+                "Hasta": 240.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126167,
-                "Desde": 190,
-                "Hasta": 192,
+                "Muestra": 132298,
+                "Desde": 240.0,
+                "Hasta": 242.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132299,
+                "Desde": 242.0,
+                "Hasta": 244.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132300,
+                "Desde": 242.0,
+                "Hasta": 244.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 126168,
-                "Desde": 192,
-                "Hasta": 194,
+                "Muestra": 132301,
+                "Desde": 244.0,
+                "Hasta": 246.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126169,
-                "Desde": 194,
-                "Hasta": 196,
+                "Muestra": 132302,
+                "Desde": 246.0,
+                "Hasta": 248.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126170,
-                "Desde": 196,
-                "Hasta": 198,
+                "Muestra": 132303,
+                "Desde": 248.0,
+                "Hasta": 250.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 126171,
-                "Desde": 198,
-                "Hasta": 200,
+                "Muestra": 132304,
+                "Desde": 250.0,
+                "Hasta": 252.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131750,
-                "Desde": 200,
-                "Hasta": 202,
+                "Muestra": 132305,
+                "Desde": 252.0,
+                "Hasta": 254.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131751,
-                "Desde": 202,
-                "Hasta": 204,
+                "Muestra": 132306,
+                "Desde": 254.0,
+                "Hasta": 256.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131752,
-                "Desde": 204,
-                "Hasta": 206,
+                "Muestra": 132307,
+                "Desde": 256.0,
+                "Hasta": 258.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132308,
+                "Desde": 258.0,
+                "Hasta": 260.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132309,
+                "Desde": 260.0,
+                "Hasta": 262.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132310,
+                "Desde": 262.0,
+                "Hasta": 264.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 131753,
-                "Desde": 204,
-                "Hasta": 206,
+                "Muestra": 132311,
+                "Desde": 262.0,
+                "Hasta": 264.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 131754,
-                "Desde": 206,
-                "Hasta": 208,
+                "Muestra": 132312,
+                "Desde": 264.0,
+                "Hasta": 266.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131755,
-                "Desde": 208,
-                "Hasta": 210,
+                "Muestra": 132313,
+                "Desde": 266.0,
+                "Hasta": 268.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131756,
-                "Desde": 210,
-                "Hasta": 212,
+                "Muestra": 132314,
+                "Desde": 268.0,
+                "Hasta": 270.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131757,
-                "Desde": 212,
-                "Hasta": 214,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131758,
-                "Desde": 214,
-                "Hasta": 216,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131759,
-                "Desde": 216,
-                "Hasta": 218,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131760,
-                "Desde": 218,
-                "Hasta": 220,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131761,
-                "Desde": 220,
-                "Hasta": 222,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131762,
-                "Desde": 222,
-                "Hasta": 224,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131763,
-                "Desde": 224,
-                "Hasta": 226,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131764,
-                "Desde": 224,
-                "Hasta": 226,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 131765,
-                "Desde": 226,
-                "Hasta": 228,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131766,
-                "Desde": 228,
-                "Hasta": 230,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131767,
-                "Desde": 230,
-                "Hasta": 232,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131768,
-                "Desde": 232,
-                "Hasta": 234,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131769,
-                "Desde": 232,
-                "Hasta": 234,
+                "Muestra": 132315,
+                "Desde": 268.0,
+                "Hasta": 270.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 131770,
-                "Desde": 234,
-                "Hasta": 236,
+                "Muestra": 132316,
+                "Desde": 270.0,
+                "Hasta": 272.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131771,
-                "Desde": 236,
-                "Hasta": 238,
+                "Muestra": 132317,
+                "Desde": 272.0,
+                "Hasta": 274.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131772,
-                "Desde": 238,
-                "Hasta": 240,
+                "Muestra": 132318,
+                "Desde": 274.0,
+                "Hasta": 276.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131773,
-                "Desde": 240,
-                "Hasta": 242,
+                "Muestra": 132319,
+                "Desde": 276.0,
+                "Hasta": 278.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131774,
-                "Desde": 242,
-                "Hasta": 244,
+                "Muestra": 132320,
+                "Desde": 278.0,
+                "Hasta": 280.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132321,
+                "Desde": 280.0,
+                "Hasta": 282.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132322,
+                "Desde": 280.0,
+                "Hasta": 282.0,
+                "QAQC": "Duplicado#10"
+            },
+            {
+                "Muestra": 132323,
+                "Desde": 282.0,
+                "Hasta": 284.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132324,
+                "Desde": 284.0,
+                "Hasta": 286.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132325,
+                "Desde": 286.0,
+                "Hasta": 288.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132326,
+                "Desde": 288.0,
+                "Hasta": 290.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132327,
+                "Desde": 290.0,
+                "Hasta": 292.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132328,
+                "Desde": 292.0,
+                "Hasta": 294.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132329,
+                "Desde": 294.0,
+                "Hasta": 296.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132330,
+                "Desde": 296.0,
+                "Hasta": 298.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 132331,
+                "Desde": 298.0,
+                "Hasta": 300.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130015,
+                "Desde": 300.0,
+                "Hasta": 302.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130016,
+                "Desde": 302.0,
+                "Hasta": 304.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 131775,
-                "Desde": 242,
-                "Hasta": 244,
+                "Muestra": 130017,
+                "Desde": 302.0,
+                "Hasta": 304.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 131776,
-                "Desde": 244,
-                "Hasta": 246,
+                "Muestra": 130018,
+                "Desde": 304.0,
+                "Hasta": 306.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131777,
-                "Desde": 246,
-                "Hasta": 248,
+                "Muestra": 130019,
+                "Desde": 306.0,
+                "Hasta": 308.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131778,
-                "Desde": 248,
-                "Hasta": 250,
+                "Muestra": 130020,
+                "Desde": 308.0,
+                "Hasta": 310.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131779,
-                "Desde": 250,
-                "Hasta": 252,
+                "Muestra": 130021,
+                "Desde": 310.0,
+                "Hasta": 312.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131780,
-                "Desde": 252,
-                "Hasta": 254,
+                "Muestra": 130022,
+                "Desde": 312.0,
+                "Hasta": 314.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131781,
-                "Desde": 254,
-                "Hasta": 256,
+                "Muestra": 130023,
+                "Desde": 314.0,
+                "Hasta": 316.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131782,
-                "Desde": 256,
-                "Hasta": 258,
+                "Muestra": 130024,
+                "Desde": 316.0,
+                "Hasta": 318.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131783,
-                "Desde": 258,
-                "Hasta": 260,
+                "Muestra": 130025,
+                "Desde": 318.0,
+                "Hasta": 320.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 131784,
-                "Desde": 260,
-                "Hasta": 262,
+                "Muestra": 130026,
+                "Desde": 320.0,
+                "Hasta": 322.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123549,
-                "Desde": 262,
-                "Hasta": 264,
+                "Muestra": 130027,
+                "Desde": 320.0,
+                "Hasta": 322.0,
+                "QAQC": "Duplicado#10"
+            },
+            {
+                "Muestra": 130028,
+                "Desde": 322.0,
+                "Hasta": 324.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123550,
-                "Desde": 264,
-                "Hasta": 266,
+                "Muestra": 130029,
+                "Desde": 324.0,
+                "Hasta": 326.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123551,
-                "Desde": 266,
-                "Hasta": 268,
+                "Muestra": 130030,
+                "Desde": 326.0,
+                "Hasta": 328.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123552,
-                "Desde": 268,
-                "Hasta": 270,
+                "Muestra": 130031,
+                "Desde": 328.0,
+                "Hasta": 330.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123553,
-                "Desde": 270,
-                "Hasta": 272,
+                "Muestra": 130032,
+                "Desde": 330.0,
+                "Hasta": 332.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123554,
-                "Desde": 272,
-                "Hasta": 274,
+                "Muestra": 130033,
+                "Desde": 332.0,
+                "Hasta": 334.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123555,
-                "Desde": 274,
-                "Hasta": 276,
+                "Muestra": 130034,
+                "Desde": 334.0,
+                "Hasta": 336.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130035,
+                "Desde": 336.0,
+                "Hasta": 338.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130036,
+                "Desde": 338.0,
+                "Hasta": 340.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130037,
+                "Desde": 340.0,
+                "Hasta": 342.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 123556,
-                "Desde": 274,
-                "Hasta": 276,
+                "Muestra": 130038,
+                "Desde": 340.0,
+                "Hasta": 342.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 123557,
-                "Desde": 276,
-                "Hasta": 278,
+                "Muestra": 130039,
+                "Desde": 342.0,
+                "Hasta": 344.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123558,
-                "Desde": 278,
-                "Hasta": 280,
+                "Muestra": 130040,
+                "Desde": 344.0,
+                "Hasta": 346.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123559,
-                "Desde": 280,
-                "Hasta": 282,
+                "Muestra": 130041,
+                "Desde": 346.0,
+                "Hasta": 348.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123560,
-                "Desde": 282,
-                "Hasta": 284,
+                "Muestra": 130042,
+                "Desde": 348.0,
+                "Hasta": 350.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123561,
-                "Desde": 284,
-                "Hasta": 286,
+                "Muestra": 130043,
+                "Desde": 350.0,
+                "Hasta": 352.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123562,
-                "Desde": 286,
-                "Hasta": 288,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123563,
-                "Desde": 286,
-                "Hasta": 288,
+                "Muestra": 130044,
+                "Desde": 350.0,
+                "Hasta": 352.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 123564,
-                "Desde": 288,
-                "Hasta": 290,
+                "Muestra": 130045,
+                "Desde": 352.0,
+                "Hasta": 354.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123565,
-                "Desde": 290,
-                "Hasta": 292,
+                "Muestra": 130046,
+                "Desde": 354.0,
+                "Hasta": 356.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123566,
-                "Desde": 292,
-                "Hasta": 294,
+                "Muestra": 130047,
+                "Desde": 356.0,
+                "Hasta": 358.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123567,
-                "Desde": 294,
-                "Hasta": 296,
+                "Muestra": 130048,
+                "Desde": 358.0,
+                "Hasta": 360.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123568,
-                "Desde": 294,
-                "Hasta": 296,
+                "Muestra": 130049,
+                "Desde": 358.0,
+                "Hasta": 360.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 123569,
-                "Desde": 296,
-                "Hasta": 298,
+                "Muestra": 130050,
+                "Desde": 360.0,
+                "Hasta": 362.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123570,
-                "Desde": 298,
-                "Hasta": 300,
+                "Muestra": 130051,
+                "Desde": 362.0,
+                "Hasta": 364.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123571,
-                "Desde": 300,
-                "Hasta": 302,
+                "Muestra": 130052,
+                "Desde": 364.0,
+                "Hasta": 366.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123572,
-                "Desde": 302,
-                "Hasta": 304,
+                "Muestra": 130053,
+                "Desde": 366.0,
+                "Hasta": 368.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123573,
-                "Desde": 304,
-                "Hasta": 306,
+                "Muestra": 130054,
+                "Desde": 368.0,
+                "Hasta": 370.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123574,
-                "Desde": 306,
-                "Hasta": 308,
+                "Muestra": 130055,
+                "Desde": 370.0,
+                "Hasta": 372.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123575,
-                "Desde": 308,
-                "Hasta": 310,
+                "Muestra": 130056,
+                "Desde": 372.0,
+                "Hasta": 374.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123576,
-                "Desde": 310,
-                "Hasta": 312,
+                "Muestra": 130057,
+                "Desde": 374.0,
+                "Hasta": 376.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123577,
-                "Desde": 312,
-                "Hasta": 314,
+                "Muestra": 130058,
+                "Desde": 376.0,
+                "Hasta": 378.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130059,
+                "Desde": 378.0,
+                "Hasta": 380.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 123578,
-                "Desde": 312,
-                "Hasta": 314,
+                "Muestra": 130060,
+                "Desde": 378.0,
+                "Hasta": 380.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 123579,
-                "Desde": 314,
-                "Hasta": 316,
+                "Muestra": 130061,
+                "Desde": 380.0,
+                "Hasta": 382.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123580,
-                "Desde": 316,
-                "Hasta": 318,
+                "Muestra": 130062,
+                "Desde": 382.0,
+                "Hasta": 384.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123581,
-                "Desde": 318,
-                "Hasta": 320,
+                "Muestra": 130063,
+                "Desde": 384.0,
+                "Hasta": 386.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123582,
-                "Desde": 320,
-                "Hasta": 322,
+                "Muestra": 130064,
+                "Desde": 386.0,
+                "Hasta": 388.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123583,
-                "Desde": 322,
-                "Hasta": 324,
+                "Muestra": 130065,
+                "Desde": 388.0,
+                "Hasta": 390.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123584,
-                "Desde": 324,
-                "Hasta": 326,
+                "Muestra": 130066,
+                "Desde": 390.0,
+                "Hasta": 392.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123585,
-                "Desde": 326,
-                "Hasta": 328,
+                "Muestra": 130067,
+                "Desde": 392.0,
+                "Hasta": 394.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123586,
-                "Desde": 328,
-                "Hasta": 330,
+                "Muestra": 130068,
+                "Desde": 394.0,
+                "Hasta": 396.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123587,
-                "Desde": 330,
-                "Hasta": 332,
+                "Muestra": 130069,
+                "Desde": 396.0,
+                "Hasta": 398.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123588,
-                "Desde": 332,
-                "Hasta": 334,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123589,
-                "Desde": 332,
-                "Hasta": 334,
+                "Muestra": 130070,
+                "Desde": 396.0,
+                "Hasta": 398.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 123590,
-                "Desde": 334,
-                "Hasta": 336,
+                "Muestra": 130071,
+                "Desde": 398.0,
+                "Hasta": 400.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123591,
-                "Desde": 336,
-                "Hasta": 338,
+                "Muestra": 130072,
+                "Desde": 400.0,
+                "Hasta": 402.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123592,
-                "Desde": 338,
-                "Hasta": 340,
+                "Muestra": 130073,
+                "Desde": 402.0,
+                "Hasta": 404.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123593,
-                "Desde": 338,
-                "Hasta": 340,
+                "Muestra": 130074,
+                "Desde": 402.0,
+                "Hasta": 404.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 123594,
-                "Desde": 340,
-                "Hasta": 342,
+                "Muestra": 130075,
+                "Desde": 404.0,
+                "Hasta": 406.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123595,
-                "Desde": 342,
-                "Hasta": 344,
+                "Muestra": 130076,
+                "Desde": 406.0,
+                "Hasta": 408.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123596,
-                "Desde": 344,
-                "Hasta": 346,
+                "Muestra": 130077,
+                "Desde": 408.0,
+                "Hasta": 410.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123597,
-                "Desde": 346,
-                "Hasta": 348,
+                "Muestra": 130078,
+                "Desde": 410.0,
+                "Hasta": 412.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123598,
-                "Desde": 348,
-                "Hasta": 350,
+                "Muestra": 130079,
+                "Desde": 412.0,
+                "Hasta": 414.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123599,
-                "Desde": 350,
-                "Hasta": 352,
+                "Muestra": 130080,
+                "Desde": 414.0,
+                "Hasta": 416.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130081,
+                "Desde": 416.0,
+                "Hasta": 418.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 123600,
-                "Desde": 350,
-                "Hasta": 352,
+                "Muestra": 130082,
+                "Desde": 416.0,
+                "Hasta": 418.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 123601,
-                "Desde": 352,
-                "Hasta": 354,
+                "Muestra": 130083,
+                "Desde": 418.0,
+                "Hasta": 420.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123602,
-                "Desde": 354,
-                "Hasta": 356,
+                "Muestra": 130084,
+                "Desde": 420.0,
+                "Hasta": 422.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123603,
-                "Desde": 356,
-                "Hasta": 358,
+                "Muestra": 130085,
+                "Desde": 422.0,
+                "Hasta": 424.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123604,
-                "Desde": 358,
-                "Hasta": 360,
+                "Muestra": 130086,
+                "Desde": 424.0,
+                "Hasta": 426.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123605,
-                "Desde": 360,
-                "Hasta": 362,
+                "Muestra": 130087,
+                "Desde": 426.0,
+                "Hasta": 428.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123606,
-                "Desde": 362,
-                "Hasta": 364,
+                "Muestra": 130088,
+                "Desde": 428.0,
+                "Hasta": 430.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123607,
-                "Desde": 364,
-                "Hasta": 366,
+                "Muestra": 130089,
+                "Desde": 430.0,
+                "Hasta": 432.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123608,
-                "Desde": 366,
-                "Hasta": 368,
+                "Muestra": 130090,
+                "Desde": 432.0,
+                "Hasta": 434.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123609,
-                "Desde": 368,
-                "Hasta": 370,
+                "Muestra": 130091,
+                "Desde": 434.0,
+                "Hasta": 436.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123610,
-                "Desde": 370,
-                "Hasta": 372,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123611,
-                "Desde": 370,
-                "Hasta": 372,
+                "Muestra": 130092,
+                "Desde": 434.0,
+                "Hasta": 436.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 123612,
-                "Desde": 372,
-                "Hasta": 374,
+                "Muestra": 130093,
+                "Desde": 436.0,
+                "Hasta": 438.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123613,
-                "Desde": 374,
-                "Hasta": 376,
+                "Muestra": 130094,
+                "Desde": 438.0,
+                "Hasta": 440.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123614,
-                "Desde": 376,
-                "Hasta": 378,
+                "Muestra": 130095,
+                "Desde": 440.0,
+                "Hasta": 442.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123615,
-                "Desde": 378,
-                "Hasta": 380,
+                "Muestra": 130096,
+                "Desde": 442.0,
+                "Hasta": 444.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123616,
-                "Desde": 380,
-                "Hasta": 382,
+                "Muestra": 130097,
+                "Desde": 444.0,
+                "Hasta": 446.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123617,
-                "Desde": 382,
-                "Hasta": 384,
+                "Muestra": 130098,
+                "Desde": 446.0,
+                "Hasta": 448.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123618,
-                "Desde": 384,
-                "Hasta": 386,
+                "Muestra": 130099,
+                "Desde": 448.0,
+                "Hasta": 450.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123619,
-                "Desde": 386,
-                "Hasta": 388,
+                "Muestra": 130100,
+                "Desde": 450.0,
+                "Hasta": 452.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123620,
-                "Desde": 388,
-                "Hasta": 390,
+                "Muestra": 130101,
+                "Desde": 452.0,
+                "Hasta": 454.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130102,
+                "Desde": 454.0,
+                "Hasta": 456.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 123621,
-                "Desde": 388,
-                "Hasta": 390,
+                "Muestra": 130103,
+                "Desde": 454.0,
+                "Hasta": 456.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 123622,
-                "Desde": 390,
-                "Hasta": 392,
+                "Muestra": 130104,
+                "Desde": 456.0,
+                "Hasta": 458.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123623,
-                "Desde": 390,
-                "Hasta": 392,
+                "Muestra": 130105,
+                "Desde": 456.0,
+                "Hasta": 458.0,
                 "QAQC": "BLK Grueso"
             },
             {
-                "Muestra": 123624,
-                "Desde": 392,
-                "Hasta": 394,
+                "Muestra": 130106,
+                "Desde": 458.0,
+                "Hasta": 460.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123625,
-                "Desde": 394,
-                "Hasta": 396,
+                "Muestra": 130107,
+                "Desde": 460.0,
+                "Hasta": 462.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123626,
-                "Desde": 396,
-                "Hasta": 398,
+                "Muestra": 130108,
+                "Desde": 462.0,
+                "Hasta": 464.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123627,
-                "Desde": 398,
-                "Hasta": 400,
+                "Muestra": 130109,
+                "Desde": 464.0,
+                "Hasta": 466.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123628,
-                "Desde": 400,
-                "Hasta": 402,
+                "Muestra": 130110,
+                "Desde": 466.0,
+                "Hasta": 468.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123629,
-                "Desde": 402,
-                "Hasta": 404,
+                "Muestra": 130111,
+                "Desde": 468.0,
+                "Hasta": 470.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123630,
-                "Desde": 404,
-                "Hasta": 406,
+                "Muestra": 130112,
+                "Desde": 470.0,
+                "Hasta": 472.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123631,
-                "Desde": 406,
-                "Hasta": 408,
+                "Muestra": 130113,
+                "Desde": 472.0,
+                "Hasta": 474.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123632,
-                "Desde": 408,
-                "Hasta": 410,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123633,
-                "Desde": 408,
-                "Hasta": 410,
+                "Muestra": 130114,
+                "Desde": 472.0,
+                "Hasta": 474.0,
                 "QAQC": "Duplicado#10"
             },
             {
-                "Muestra": 123634,
-                "Desde": 410,
-                "Hasta": 412,
+                "Muestra": 130115,
+                "Desde": 474.0,
+                "Hasta": 476.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123635,
-                "Desde": 412,
-                "Hasta": 414,
+                "Muestra": 130116,
+                "Desde": 476.0,
+                "Hasta": 478.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123636,
-                "Desde": 414,
-                "Hasta": 416,
+                "Muestra": 130117,
+                "Desde": 478.0,
+                "Hasta": 480.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123637,
-                "Desde": 416,
-                "Hasta": 418,
+                "Muestra": 130118,
+                "Desde": 480.0,
+                "Hasta": 482.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123638,
-                "Desde": 418,
-                "Hasta": 420,
+                "Muestra": 130119,
+                "Desde": 482.0,
+                "Hasta": 484.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123639,
-                "Desde": 420,
-                "Hasta": 422,
+                "Muestra": 130120,
+                "Desde": 484.0,
+                "Hasta": 486.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123640,
-                "Desde": 422,
-                "Hasta": 424,
+                "Muestra": 130121,
+                "Desde": 486.0,
+                "Hasta": 488.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123641,
-                "Desde": 424,
-                "Hasta": 426,
+                "Muestra": 130122,
+                "Desde": 488.0,
+                "Hasta": 490.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123642,
-                "Desde": 426,
-                "Hasta": 428,
+                "Muestra": 130123,
+                "Desde": 490.0,
+                "Hasta": 492.0,
+                "QAQC": ""
+            },
+            {
+                "Muestra": 130124,
+                "Desde": 492.0,
+                "Hasta": 494.0,
                 "QAQC": "LLEVA DUP"
             },
             {
-                "Muestra": 123643,
-                "Desde": 426,
-                "Hasta": 428,
+                "Muestra": 130125,
+                "Desde": 492.0,
+                "Hasta": 494.0,
                 "QAQC": "Duplicado"
             },
             {
-                "Muestra": 123644,
-                "Desde": 428,
-                "Hasta": 430,
+                "Muestra": 130126,
+                "Desde": 494.0,
+                "Hasta": 496.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123645,
-                "Desde": 430,
-                "Hasta": 432,
+                "Muestra": 130127,
+                "Desde": 496.0,
+                "Hasta": 498.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123646,
-                "Desde": 432,
-                "Hasta": 434,
+                "Muestra": 130128,
+                "Desde": 498.0,
+                "Hasta": 500.0,
                 "QAQC": ""
             },
             {
-                "Muestra": 123647,
-                "Desde": 434,
-                "Hasta": 436,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123648,
-                "Desde": 436,
-                "Hasta": 438,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123649,
-                "Desde": 438,
-                "Hasta": 440,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123650,
-                "Desde": 440,
-                "Hasta": 442,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123651,
-                "Desde": 442,
-                "Hasta": 444,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123652,
-                "Desde": 442,
-                "Hasta": 444,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 123653,
-                "Desde": 444,
-                "Hasta": 446,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123654,
-                "Desde": 446,
-                "Hasta": 448,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123655,
-                "Desde": 446,
-                "Hasta": 448,
+                "Muestra": 131263,
+                "Desde": 498.0,
+                "Hasta": 500.0,
                 "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 123656,
-                "Desde": 448,
-                "Hasta": 450,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123657,
-                "Desde": 450,
-                "Hasta": 452,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123658,
-                "Desde": 452,
-                "Hasta": 454,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123659,
-                "Desde": 454,
-                "Hasta": 456,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123660,
-                "Desde": 456,
-                "Hasta": 458,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 123661,
-                "Desde": 458,
-                "Hasta": 460,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131784,
-                "Desde": 460,
-                "Hasta": 462,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131785,
-                "Desde": 462,
-                "Hasta": 464,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131786,
-                "Desde": 464,
-                "Hasta": 466,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131787,
-                "Desde": 466,
-                "Hasta": 468,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131788,
-                "Desde": 468,
-                "Hasta": 470,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131789,
-                "Desde": 470,
-                "Hasta": 472,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 131790,
-                "Desde": 470,
-                "Hasta": 472,
-                "QAQC": "Duplicado"
-            },
-            {
-                "Muestra": 131791,
-                "Desde": 472,
-                "Hasta": 474,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131792,
-                "Desde": 472,
-                "Hasta": 474,
-                "QAQC": "BLK Grueso"
-            },
-            {
-                "Muestra": 131793,
-                "Desde": 474,
-                "Hasta": 476,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131794,
-                "Desde": 476,
-                "Hasta": 478,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131795,
-                "Desde": 478,
-                "Hasta": 480,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131796,
-                "Desde": 480,
-                "Hasta": 482,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131797,
-                "Desde": 482,
-                "Hasta": 484,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131798,
-                "Desde": 484,
-                "Hasta": 486,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131799,
-                "Desde": 486,
-                "Hasta": 488,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131800,
-                "Desde": 488,
-                "Hasta": 490,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131801,
-                "Desde": 490,
-                "Hasta": 492,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131802,
-                "Desde": 490,
-                "Hasta": 492,
-                "QAQC": "Duplicado#10"
-            },
-            {
-                "Muestra": 131803,
-                "Desde": 492,
-                "Hasta": 494,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131804,
-                "Desde": 494,
-                "Hasta": 496,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131805,
-                "Desde": 496,
-                "Hasta": 498,
-                "QAQC": ""
-            },
-            {
-                "Muestra": 131806,
-                "Desde": 498,
-                "Hasta": 500,
-                "QAQC": ""
             }
         ],
         "ENR-018": [
@@ -10931,13 +9321,7 @@
                 "Muestra": 131483,
                 "Desde": 34.0,
                 "Hasta": 36.0,
-                "QAQC": "LLEVA DUP"
-            },
-            {
-                "Muestra": 131484,
-                "Desde": 34.0,
-                "Hasta": 36.0,
-                "QAQC": "Duplicado"
+                "QAQC": ""
             },
             {
                 "Muestra": 131485,
@@ -10949,7 +9333,13 @@
                 "Muestra": 131486,
                 "Desde": 38.0,
                 "Hasta": 40.0,
-                "QAQC": ""
+                "QAQC": "LLEVA DUP"
+            },
+            {
+                "Muestra": 131484,
+                "Desde": 40.0,
+                "Hasta": 42.0,
+                "QAQC": "Duplicado"
             },
             {
                 "Muestra": 131487,
